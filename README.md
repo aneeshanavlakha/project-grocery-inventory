@@ -1,6 +1,6 @@
-# My Personal Project
+# My Personal Project: Grocery Inventory
 
-## Grocery Inventory
+## Project Description
 
 **What will the application do?** <br>
 This application will keep inventory of groceries at home.<br>
@@ -26,6 +26,6 @@ It can be used by anyone who keeps groceries in their home.
 As a student that lives alone, I am in charge of keeping tab on my groceries 
 and eating habits i.e., what groceries I consume the most, least and how often.
 I often find myself lost on which groceries I have left and how many. 
-I think that this application will help me keep tabs on my food and also allow
-me to keep tabs on my eating habits in order to maintain a healthy diet and 
-plan for each end-of-week grocery haul.
+I think that this application will help me, and others in my situation, 
+keep tabs on our food and also allow us to keep tabs on our eating habits 
+in order to maintain a healthy diet and plan for each end-of-week grocery haul.
