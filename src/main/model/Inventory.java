@@ -16,34 +16,37 @@ public class Inventory {
     private int value;
 
     public Inventory() {
-        this.categoryName = null;
         this.groceries = null;
+        this.value = 0;
     }
 
     //MODIFIES: this, grocery
-    //EFFECTS: adds the given grocery to the grocery list in given category
-    //         return true
+    //EFFECTS: adds a grocery to inventory
     public void addGrocery(String name, int quantity) {
         Grocery g = new Grocery(name, quantity);
         groceries.add(g);
     }
 
-    public void setCategoryName(String name) {
-        this.categoryName = name;
-    }
     //MODIFIES: this, category
-    //EFFECTS: removes a grocery from a category
-    public void removeGrocery(Grocery grocery, Inventory category) {
+    //EFFECTS: removes a grocery from inventory
+    public void removeGrocery(Grocery grocery) {
         groceries.remove(grocery);
     }
 
-    public String getCategoryName() {
-        return this.categoryName;
+    //MODIFIES: this
+    //EFFECTS: Adds the amount spend to existing value
+    public void setValue(int amount) {
+        this.value += amount;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: resets existing value to 0
+    public void reset() {
+        this.value = 0;
     }
 
     public List<Grocery> getGroceries() {
         return this.groceries;
     }
-
 
 }

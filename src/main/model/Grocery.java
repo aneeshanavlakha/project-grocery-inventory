@@ -2,32 +2,53 @@ package model;
 
 // A grocery is an item that has a name, quantity and assigned category
 public class Grocery {
-    String groceryName;
+    String name;
     int quantity;
+    int lowerLimit;
 
     public Grocery(String name, int quantity) {
-        this.groceryName = name;
+        this.name = name;
+        this.quantity = quantity;
+        this.lowerLimit = 0;
+    }
+
+
+    //EFFECTS: if quantity is same as lower limit, issues a "running low" alert
+    //         if quantity is lower than limit but at least 1, alerts how many items below limit
+    //         if quantity is 0, issues an "out of stock" alert
+    public String alert() {
+        if (this.quantity == this.lowerLimit) {
+            return "Running low!";
+        } else if (this.quantity < this.lowerLimit && this.lowerLimit - this.quantity > 0) {
+            return "You are " + (this.lowerLimit - this.quantity) + " items below limit";
+        } else if (this.quantity == 0) {
+            return "Out of stock - buy more!";
+        } else {
+            return null;    //do i need this?
+        }
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    // EFFECTS: set the grocery name
-    public void setGroceryName(String name) {
-        this.groceryName = name;
+    public void setLowerLimit(int limit) {
+        this.lowerLimit = limit;
     }
 
-    // EFFECTS: set the grocery quantity
-    public void setGroceryName(int quantity) {
-        this.quantity = quantity;
-    }
-
-    // EFFECTS: returns the grocery name
     public String getGroceryName() {
-        return this.groceryName;
+        return this.name;
     }
 
-    // EFFECTS: returns the grocery quantity
     public int getQuantity() {
         return this.quantity;
     }
 
+    public int getLowerLimit() {
+        return this.lowerLimit;
+    }
 }
