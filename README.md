@@ -42,6 +42,9 @@ in order to maintain a healthy diet and plan for each end-of-week grocery haul.
 - As a user, I want to be able to see a summary of my weekly grocery-usage statistics, like
 usage frequency (most/least used), frequency of going bad etc.
 
+  
+
+
 
 
 

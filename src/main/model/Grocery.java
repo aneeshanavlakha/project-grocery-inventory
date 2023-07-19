@@ -19,7 +19,7 @@ public class Grocery {
     public String alert() {
         if (this.quantity == this.lowerLimit) {
             return "Running low!";
-        } else if (this.quantity < this.lowerLimit && this.lowerLimit - this.quantity > 0) {
+        } else if (this.quantity < this.lowerLimit && this.quantity > 0) {
             return "You are " + (this.lowerLimit - this.quantity) + " items below limit";
         } else if (this.quantity == 0) {
             return "Out of stock - buy more!";
@@ -51,4 +51,5 @@ public class Grocery {
     public int getLowerLimit() {
         return this.lowerLimit;
     }
+
 }

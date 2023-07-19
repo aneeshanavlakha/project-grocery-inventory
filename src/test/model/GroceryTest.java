@@ -16,6 +16,14 @@ class GroceryTest {
     @Test
     public void testAlert() {
         banana.setLowerLimit(3);
-        assertEquals("") //how do i test smth with output string?
+        banana.setQuantity(3);
+        assertEquals("Running low!", banana.alert());
+
+        banana.setQuantity(1);
+        assertEquals("You are 2 items below limit", banana.alert());
+
+        banana.setQuantity(0);
+        assertEquals("Out of stock - buy more!", banana.alert());
+
     }
 }

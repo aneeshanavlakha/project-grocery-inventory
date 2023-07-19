@@ -6,6 +6,7 @@ package model;
 //does this need to be an abstract superclass with
 // each new category as a subclass?
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.awt.AWTEventMulticaster.add;
@@ -16,15 +17,32 @@ public class Inventory {
     private int value;
 
     public Inventory() {
-        this.groceries = null;
+        this.groceries = new ArrayList<Grocery>();
         this.value = 0;
     }
 
     //MODIFIES: this, grocery
     //EFFECTS: adds a grocery to inventory
-    public void addGrocery(String name, int quantity) {
-        Grocery g = new Grocery(name, quantity);
+    //         if a grocery with the same name exists, returns false
+    public boolean addGrocery(Grocery g) {
+        int p =
+
+        for (int i = 0; i <= getGroceries().size(); i++) {
+            if (this.name = g.name) {
+                return false;
+            }  else {
+                getGroceries().indexOf(this.groceries)
+            }
+        }
+
+//        int highestIndex = 0;
+//
+//        for (int i = 1; i < this.getNumFoods(); i++) {
+//            if (findFoodImpact(i) > findFoodImpact(highestIndex)) {
+//                highestIndex = i;
+
         groceries.add(g);
+        return true;
     }
 
     //MODIFIES: this, category
