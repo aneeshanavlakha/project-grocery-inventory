@@ -4,12 +4,10 @@ package model;
 public class Grocery {
     String groceryName;
     int quantity;
-    String categoryName;
 
     public Grocery(String name, int quantity) {
         this.groceryName = name;
         this.quantity = quantity;
-        this.categoryName = null;
     }
 
     // EFFECTS: set the grocery name
@@ -30,11 +28,6 @@ public class Grocery {
     // EFFECTS: returns the grocery quantity
     public int getQuantity() {
         return this.quantity;
-    }
-
-    // EFFECTS: returns the grocery category
-    public String getCategoryName() {
-        return this.categoryName;
     }
 
 }

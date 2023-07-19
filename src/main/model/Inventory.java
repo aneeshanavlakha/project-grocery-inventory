@@ -10,23 +10,22 @@ import java.util.List;
 
 import static java.awt.AWTEventMulticaster.add;
 
-public class Category {
+public class Inventory {
 
-    private String categoryName;
     private List<Grocery> groceries;
+    private int value;
 
-    public Category() {
+    public Inventory() {
         this.categoryName = null;
         this.groceries = null;
     }
 
-    //REQUIRES: input categoryName is an existing category  //how do i test this?
     //MODIFIES: this, grocery
     //EFFECTS: adds the given grocery to the grocery list in given category
     //         return true
-    public boolean addGrocery(Grocery grocery, String categoryName) {
-        groceries.add(grocery);
-        return true;
+    public void addGrocery(String name, int quantity) {
+        Grocery g = new Grocery(name, quantity);
+        groceries.add(g);
     }
 
     public void setCategoryName(String name) {
@@ -34,7 +33,7 @@ public class Category {
     }
     //MODIFIES: this, category
     //EFFECTS: removes a grocery from a category
-    public void removeGrocery(Grocery grocery, Category category) {
+    public void removeGrocery(Grocery grocery, Inventory category) {
         groceries.remove(grocery);
     }
 
