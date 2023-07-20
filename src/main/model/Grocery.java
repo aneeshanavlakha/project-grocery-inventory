@@ -35,18 +35,13 @@ public class Grocery {
         this.quantity = quantity;
     }
 
-    //EFFECTS: updates quantity in a positive or negative way
-    public void updateQuantity(int quantity) {
-        this.quantity += quantity;
-    }
-
     public void setLowerLimit(int limit) {
         this.lowerLimit = limit;
     }
 
-    public Grocery getGrocery() {
-        return Grocery;
-    }
+//    public Grocery getGrocery() {
+//        return Grocery;
+//    }
 
     public String getGroceryName() {
         return this.name;

@@ -13,7 +13,7 @@ import static java.awt.AWTEventMulticaster.add;
 
 public class Inventory {
 
-    public List<Grocery> groceries;
+    private List<Grocery> groceries; //FIX!
     private int value;
 
     public Inventory() {
@@ -37,12 +37,6 @@ public class Inventory {
     //EFFECTS: Adds the amount spend to existing value
     public void updateValue(int amount) {
         this.value += amount;
-    }
-
-    //MODIFIES: this
-    //EFFECTS: resets existing value to 0
-    public void reset() {
-        this.value = 0;
     }
 
     public List<Grocery> getGroceries() {

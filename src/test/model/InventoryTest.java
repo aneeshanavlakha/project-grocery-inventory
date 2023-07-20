@@ -83,11 +83,4 @@ class InventoryTest {
         inventory.updateValue(50);
         assertEquals(130, inventory.getValue());
     }
-
-    @Test
-    public void testReset() {
-        inventory.setValue(100);
-        inventory.reset();
-        assertEquals(0, inventory.getValue());
-    }
 }
