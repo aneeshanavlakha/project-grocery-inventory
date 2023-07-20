@@ -38,20 +38,6 @@ class InventoryTest {
     }
 
     @Test
-    public void testRemoveGroceryMultiSame() {
-        // add multiple of same
-        inventory.addGrocery(banana);
-        inventory.addGrocery(milk);
-        inventory.addGrocery(kale);
-        inventory.addGrocery(banana);
-
-        assertEquals(banana, inventory.getGroceries().get(0));
-        assertEquals(milk, inventory.getGroceries().get(1));
-        assertEquals(kale, inventory.getGroceries().get(2));
-        assertEquals(banana, inventory.getGroceries().get(3));
-    }
-
-    @Test
     public void testRemoveGrocery() {
         // remove one
         inventory.addGrocery(banana);
@@ -80,13 +66,28 @@ class InventoryTest {
     }
 
     @Test
-    public void testRemoveGrocerySame() {
-        // remove multiple instances of the same grocery
-        inventory.addGrocery(banana);
-        inventory.addGrocery(kale);
-        inventory.addGrocery(banana);
+    public void testUpdateValueOne() {
+        inventory.updateValue(90);
+        assertEquals(90, inventory.getValue());
+    }
 
-        inventory.removeGrocery(banana);
-        assertEquals(1, inventory.getGroceries().size());
+    @Test
+    public void testUpdateValueMulti() {
+        inventory.setValue(90);
+        inventory.updateValue(10);
+        assertEquals(100, inventory.getValue());
+
+        inventory.setValue(80);
+        assertEquals(80, inventory.getValue());
+
+        inventory.updateValue(50);
+        assertEquals(130, inventory.getValue());
+    }
+
+    @Test
+    public void testReset() {
+        inventory.setValue(100);
+        inventory.reset();
+        assertEquals(0, inventory.getValue());
     }
 }

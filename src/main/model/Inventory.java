@@ -23,26 +23,8 @@ public class Inventory {
 
     //MODIFIES: this, grocery
     //EFFECTS: adds a grocery to inventory
-    //         if a grocery with the same name exists, returns false
-    public boolean addGrocery(Grocery g) {
-        int p =
-
-        for (int i = 0; i <= getGroceries().size(); i++) {
-            if (this.name = g.name) {
-                return false;
-            }  else {
-                getGroceries().indexOf(this.groceries)
-            }
-        }
-
-//        int highestIndex = 0;
-//
-//        for (int i = 1; i < this.getNumFoods(); i++) {
-//            if (findFoodImpact(i) > findFoodImpact(highestIndex)) {
-//                highestIndex = i;
-
+    public void addGrocery(Grocery g) {
         groceries.add(g);
-        return true;
     }
 
     //MODIFIES: this, category
@@ -53,7 +35,7 @@ public class Inventory {
 
     //MODIFIES: this
     //EFFECTS: Adds the amount spend to existing value
-    public void setValue(int amount) {
+    public void updateValue(int amount) {
         this.value += amount;
     }
 
@@ -65,6 +47,14 @@ public class Inventory {
 
     public List<Grocery> getGroceries() {
         return this.groceries;
+    }
+
+    public void setValue(int amount) {
+        this.value = amount;
+    }
+
+    public int getValue() {
+        return this.value;
     }
 
 }

@@ -12,6 +12,9 @@ public class Grocery {
         this.lowerLimit = 0;
     }
 
+    public void changeName(String name) {
+        this.name = name;
+    }
 
     //EFFECTS: if quantity is same as lower limit, issues a "running low" alert
     //         if quantity is lower than limit but at least 1, alerts how many items below limit
@@ -28,12 +31,13 @@ public class Grocery {
         }
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    //EFFECTS: updates quantity in a positive or negative way
+    public void updateQuantity(int quantity) {
+        this.quantity += quantity;
     }
 
     public void setLowerLimit(int limit) {
