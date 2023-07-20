@@ -13,7 +13,7 @@ import static java.awt.AWTEventMulticaster.add;
 
 public class Inventory {
 
-    private List<Grocery> groceries;
+    public List<Grocery> groceries;
     private int value;
 
     public Inventory() {

@@ -44,6 +44,10 @@ public class Grocery {
         this.lowerLimit = limit;
     }
 
+    public Grocery getGrocery() {
+        return Grocery;
+    }
+
     public String getGroceryName() {
         return this.name;
     }
