@@ -45,7 +45,6 @@ public class Inventory {
         this.value = 0;
     }
 
-
     public List<Grocery> getGroceries() {
         return this.groceries;
     }
@@ -58,4 +57,8 @@ public class Inventory {
         return this.value;
     }
 
+    @Override
+    public String toString() {
+        return "Inventory{" + "groceries=" + groceries + ", value=" + value + '}';
+    }
 }

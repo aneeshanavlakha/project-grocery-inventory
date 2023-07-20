@@ -32,6 +32,7 @@ public class GroceryInventoryApp {
 
             if (command.equals("d")) {
                 keepGoing = false;
+                System.out.println(inventory.toString());
             } else {
                 processCommand(command);
             }
@@ -43,9 +44,7 @@ public class GroceryInventoryApp {
     // MODIFIES: this
     // EFFECTS: processes user command
     private void processCommand(String command) {
-        if (command.equals("g")) {
-            doManageGrocery();
-        } else if (command.equals("i")) {
+        if (command.equals("i")) {
             doManageInventory();
         } else {
             System.out.println("Please make a valid selection.");
@@ -64,43 +63,17 @@ public class GroceryInventoryApp {
     //EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("\n");
-        System.out.println("\tg -> manage groceries");
         System.out.println("\ti -> manage inventory");
         System.out.println("\td -> done");
     }
 
     //MODIFIES: this
-    //EFFECTS: manages a single grocery
-    private void doManageGrocery() {
-        System.out.println("\nWould you like to..");
-        selectGroceryAction();
-    }
-
-    //MODIFIES: this
     //EFFECTS: user can view or edit inventory
     private void doManageInventory() {
-        //add ability to display inventory first
+        System.out.println(inventory.toString());
+
         System.out.println("\nWould you like to..");
         selectInventoryAction();
-    }
-
-    //MODIFIES: this
-    //EFFECTS: prompts user to select add or update grocery
-    private void selectGroceryAction() {
-        String selection = "";
-
-        while (!(selection.equals("a") || selection.equals("u"))) {
-            System.out.println("a for add new grocery");
-            System.out.println("u for update existing grocery");
-            selection = input.next();
-            selection = selection.toLowerCase();
-        }
-
-        if (selection.equals("a")) {
-            doAddGrocery();
-        } else {
-            doUpdateGrocery();
-        }
     }
 
     //MODIFIES: this
@@ -108,29 +81,83 @@ public class GroceryInventoryApp {
     private void selectInventoryAction() {
         String selection = "";
 
-        while (!(selection.equals("v") || selection.equals("e"))) {
-            System.out.println("v for view inventory");
-            System.out.println("e for edit inventory");
+        while (!(selection.equals("g") || selection.equals("v"))) {
+            System.out.println("g for manage groceries");
+            System.out.println("v for manage value");
             selection = input.next();
             selection = selection.toLowerCase();
         }
 
-        if (selection.equals("v")) {
-            doViewInventory();
+        if (selection.equals("g")) {
+            doManageGroceries();
         } else {
-            doEditInventory();
+            doManageValue();
         }
     }
 
-    //!!FIX!!
-    public void doAddGrocery() {
-        System.out.println("Enter grocery name:");
-        String name = input.nextLine();
+    //MODIFIES: this
+    //EFFECTS: manages a single grocery
+    private void doManageGroceries() {
+        System.out.println("\nWould you like to..");
+        selectGroceriesAction();
+    }
 
-        System.out.println("Enter grocery quantity:");
+    private void doManageValue() {
+        System.out.println("Current amount spent: " + inventory.getValue());
+        selectValueAction();
+    }
+
+    //MODIFIES: this
+    //EFFECTS: prompts user to select add or update grocery
+    private void selectGroceriesAction() {
+        String selection = "";
+
+        while (!(selection.equals("a") || selection.equals("r") || selection.equals("u"))) {
+            System.out.println("a for add new grocery");
+            System.out.println("r for remove existing grocery");
+            System.out.println("u for update existing grocery");
+            selection = input.next();
+            selection = selection.toLowerCase();
+        }
+
+        if (selection.equals("a")) {
+            doAddGrocery();
+        } else if (selection.equals("r")) {
+            doRemoveGrocery();
+        } else {
+            doUpdateGrocery();
+        }
+    }
+
+    private void selectValueAction() {
+        String selection = "";
+
+        while (!(selection.equals("s") || selection.equals("u") || selection.equals("r"))) {
+            System.out.println("s for set value");
+            System.out.println("u for update value");
+            System.out.println("r for reset value");
+            selection = input.next();
+            selection = selection.toLowerCase();
+        }
+
+        if (selection.equals("s")) {
+            doSetValue();
+        } else if (selection.equals("u")) {
+            doUpdateValue();
+        } else {
+            doResetValue();
+        }
+    }
+
+    public void doAddGrocery() {
+        System.out.println("Enter new grocery name:");
+        String name = input.next();
+
+        System.out.println("Enter " + name + " quantity:");
         int quantity = input.nextInt();
 
         Grocery g = new Grocery(name, quantity);
+        inventory.addGrocery(g);
 
         System.out.println("Added to inventory: "
                 + "\tGrocery name - " + name
@@ -138,37 +165,39 @@ public class GroceryInventoryApp {
 
     }
 
-    //!!FIX
+    //MODIFIES: this
+    //EFFECTS: remove grocery from inventory
+    public void doRemoveGrocery() {
+        //stub
+    }
+
     //MODIFIES: this, inventory
     //EFFECTS: updates a given grocery's quantity or lower limit
-    public boolean doUpdateGrocery() {
-//        inventory.getGroceries();
-//        System.out.println("Type grocery to update: ");
-//        String name = input.nextLine();
-//        if (inventory.groceries.contains(name)) {
-//            Grocery g = inventory.groceries.get();  //!!FIX
+    public void doUpdateGrocery() {
+        System.out.println(inventory.getGroceries());
 
-        Grocery g = new Grocery(null, 0); //remove
+//        System.out.println("Type grocery to update: ");
+//        String name = input.next();
+//        if (inventory.getGroceries().contains(name)) {
+//            Grocery g = inventory.getGroceries().get();  //!!FIX
+
         String selection = "";
 
-        while (!((selection.equals("s")) || (selection.equals("l")))) {
+        while (!((selection.equals("s")) || selection.equals("u")) || (selection.equals("l"))) {
             System.out.println("s for set quantity");
+            System.out.println("u for update quantity");
             System.out.println("l for set lower limit");
             selection = input.next();
             selection = selection.toLowerCase();
         }
 
         if (selection.equals("s")) {
-            doSetQuantity(g);
-        } else if (selection.equals("l")) {
-            doSetLimit(g);
+            doSetQuantity(grocery);
+        } else if (selection.equals("u")) {
+            doUpdateQuantity(grocery);
         } else {
-            System.out.println("Please make a valid selection.");
+            doSetLowerLimit(grocery);
         }
-        return true;
-//        } else {
-//            return false;
-//        }
     }
 
     //MODIFIES: this
@@ -181,10 +210,13 @@ public class GroceryInventoryApp {
         System.out.println(g.getGroceryName() + " now has quantity " + g.getQuantity());
     }
 
+    private void doUpdateQuantity(Grocery g) {
+        //stub
+    }
 
     //MODIFIES: this
     //EFFECTS: sets lower limit for grocery
-    private void doSetLimit(Grocery g) {
+    private void doSetLowerLimit(Grocery g) {
         System.out.println("Input limit: ");
         int limit = input.nextInt();
         g.setLowerLimit(limit);
@@ -192,62 +224,17 @@ public class GroceryInventoryApp {
         System.out.println(g.getGroceryName() + "now has limit" + g.getLowerLimit());
     }
 
-    //MODIFIES: this
-    //EFFECTS: view inventory (groceries and value)
-    private void doViewInventory() {
+    private void doSetValue() {
         //stub
     }
 
-    //MODIFIES: this
-    //EFFECTS: choose to edit groceries or value
-    private void doEditInventory() {
-        String selection = "";
-
-        while (!(selection.equals("g") || selection.equals("v"))) {
-            System.out.println("g for edit groceries");
-            System.out.println("v for edit value");
-            selection = input.next();
-            selection = selection.toLowerCase();
-        }
-
-        if (selection.equals("g")) {
-            doEditGrocery();
-        } else {
-            doEditValue();
-        }
-    }
-
-    //MODIFIES: this
-    //EFFECTS: add or remove a grocery from inventory
-    private void doEditGrocery() {
-        String selection = "";
-
-        while (!(selection.equals("a") || selection.equals("r"))) {
-            System.out.println("a for add new grocery");
-            System.out.println("r for remove existing grocery");
-            selection = input.next();
-            selection = selection.toLowerCase();
-        }
-
-        if (selection.equals("a")) {
-            doAddGrocery();
-        } else {
-            doRemoveGrocery();
-        }
-    }
-
-    //MODIFIES: this
-    //EFFECTS: remove grocery from inventory
-    private void doRemoveGrocery() {
+    private void doUpdateValue() {
         //stub
     }
 
-    //MODIFIES: this
-    //EFFECTS: set value in inventory
-    private void doEditValue() {
+    private void doResetValue() {
         //stub
     }
 
-    //add method for alerts
 }
 

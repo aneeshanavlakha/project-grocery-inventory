@@ -44,10 +44,6 @@ public class Grocery {
         this.lowerLimit = limit;
     }
 
-//    public Grocery getGrocery() {
-//        return Grocery;
-//    }
-
     public String getGroceryName() {
         return this.name;
     }
@@ -58,6 +54,11 @@ public class Grocery {
 
     public int getLowerLimit() {
         return this.lowerLimit;
+    }
+
+    @Override
+    public String toString() {
+        return "Grocery{" + "name='" + name + '\'' + ", quantity=" + quantity + ", lowerLimit=" + lowerLimit + '}';
     }
 
 }
