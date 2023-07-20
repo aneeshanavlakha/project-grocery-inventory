@@ -39,6 +39,13 @@ public class Inventory {
         this.value += amount;
     }
 
+    //MODIFIES: this
+    //EFFECTS: resets existing value to 0
+    public void reset() {
+        this.value = 0;
+    }
+
+
     public List<Grocery> getGroceries() {
         return this.groceries;
     }

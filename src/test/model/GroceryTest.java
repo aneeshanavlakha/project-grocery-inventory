@@ -27,6 +27,10 @@ class GroceryTest {
         assertEquals(3, banana.getLowerLimit());
         assertEquals("Running low!", banana.alert());
 
+        banana.updateQuantity(-2);
+        assertEquals(1, banana.getQuantity());
+        assertEquals("You are 2 items below limit", banana.alert());
+
         banana.setQuantity(0);
         assertEquals("Out of stock - buy more!", banana.alert());
     }

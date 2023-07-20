@@ -31,6 +31,11 @@ public class Grocery {
         }
     }
 
+    //EFFECTS: updates quantity in a positive or negative way
+    public void updateQuantity(int quantity) {
+        this.quantity += quantity;
+    }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
