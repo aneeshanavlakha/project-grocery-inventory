@@ -52,7 +52,7 @@ public class GroceryInventoryApp {
     }
 
     //MODIFIES: this
-    //EFFECTS: initilizes groceries and inventories
+    //EFFECTS: initializes groceries and inventories
     private void init() {
         inventory = new Inventory();
         grocery = new Grocery(null, 0);
@@ -125,7 +125,7 @@ public class GroceryInventoryApp {
         } else if (selection.equals("r")) {
             doRemoveGrocery();
         } else {
-            doUpdateGrocery();
+            doUpdateGroceryCheck();
         }
     }
 
@@ -141,11 +141,11 @@ public class GroceryInventoryApp {
         }
 
         if (selection.equals("s")) {
-            doSetValue();
+            doSetValue(inventory);
         } else if (selection.equals("u")) {
-            doUpdateValue();
+            doUpdateValue(inventory);
         } else {
-            doResetValue();
+            inventory.reset();
         }
     }
 
@@ -159,31 +159,71 @@ public class GroceryInventoryApp {
         Grocery g = new Grocery(name, quantity);
         inventory.addGrocery(g);
 
-        System.out.println("Added to inventory: "
-                + "\tGrocery name - " + name
-                + "\tGrocery quantity - " + quantity);
+        System.out.println("Added to inventory: " + "Grocery name - " + name + "Grocery quantity - " + quantity);
 
+        //add ability to loop back to add groceries menu i.e. "add another grocery" directly? and then quit when wanted?
     }
 
+    //FIX!!
     //MODIFIES: this
     //EFFECTS: remove grocery from inventory
+    //         checks input grocery name against each item in the inventory
+    //         if the inventory contains the name, produces true and removes it from inventory
+    //         and print statement saying it has been removed
+    //         if not produces false and error message saying "this grocery does not exist"
+    //         allows user to re-input a grocery name
     public void doRemoveGrocery() {
-        //stub
-    }
-
-    //MODIFIES: this, inventory
-    //EFFECTS: updates a given grocery's quantity or lower limit
-    public void doUpdateGrocery() {
         System.out.println(inventory.getGroceries());
 
-//        System.out.println("Type grocery to update: ");
-//        String name = input.next();
-//        if (inventory.getGroceries().contains(name)) {
-//            Grocery g = inventory.getGroceries().get();  //!!FIX
+        while (true) {
+            System.out.println("Type grocery to remove or press q to quit");
+            String name = input.next();
+            if (name.equals("q")) {
+                return;
+            }
+            for (int i = 0; i < inventory.getGroceries().size(); i++) {
+                if (inventory.getGroceries().get(i).getGroceryName().equals(name)) {
+                    Grocery g = inventory.getGroceries().remove(i);
+                    System.out.println(g.getGroceryName() + " has been removed!");
+                    return;
+                }
+            }
+            System.out.println("Doesn't exist! Try again."); //why is this showing up for other methods too?
+        }
 
+    }
+
+    //FIX!!
+    //MODIFIES: this, inventory
+    //EFFECTS: updates a given grocery's quantity or lower limit
+    //         checks current grocery name against each item in the inventory
+    //         if the inventory contains the name, produces true and allows user to proceed
+    //         if not produces false and error message saying "this grocery does not exist"
+    //         allows user to re-input a grocery name
+    public void doUpdateGroceryCheck() {
+        System.out.println(inventory.getGroceries());
+
+        while (true) {
+            System.out.println("Type grocery to update or press q to quit");
+            String name = input.next();
+            if (name.equals("q")) {
+                return;
+            }
+            for (int i = 0; i < inventory.getGroceries().size(); i++) {
+                if (inventory.getGroceries().get(i).getGroceryName().equals(name)) {
+                    doUpdateGrocery();
+                }
+            }
+            System.out.println("Doesn't exist! Try again.");
+        }
+
+        //add method to set alert
+    }
+
+    private void doUpdateGrocery() {
         String selection = "";
 
-        while (!((selection.equals("s")) || selection.equals("u")) || (selection.equals("l"))) {
+        while (!(selection.equals("s") || selection.equals("u") || selection.equals("l"))) {
             System.out.println("s for set quantity");
             System.out.println("u for update quantity");
             System.out.println("l for set lower limit");
@@ -211,29 +251,37 @@ public class GroceryInventoryApp {
     }
 
     private void doUpdateQuantity(Grocery g) {
-        //stub
+        System.out.println("Input quantity to add: ");
+        int quantity = input.nextInt();
+        g.updateQuantity(quantity);
+
+        System.out.println(g.getGroceryName() + " now has quantity " + g.getQuantity());
     }
 
     //MODIFIES: this
     //EFFECTS: sets lower limit for grocery
     private void doSetLowerLimit(Grocery g) {
-        System.out.println("Input limit: ");
+        System.out.println("Input lower limit: ");
         int limit = input.nextInt();
         g.setLowerLimit(limit);
 
         System.out.println(g.getGroceryName() + "now has limit" + g.getLowerLimit());
     }
 
-    private void doSetValue() {
-        //stub
+    //MODIFIES: this
+    //EFFECTS: sets new value for inventory
+    private void doSetValue(Inventory i) {
+        System.out.println("Input new value: ");
+        int value = input.nextInt();
+        i.setValue(value);
     }
 
-    private void doUpdateValue() {
-        //stub
-    }
-
-    private void doResetValue() {
-        //stub
+    //MODIFIES: this
+    //EFFECTS: updates value for inventory by given value
+    private void doUpdateValue(Inventory i) {
+        System.out.println("Input value to update by: \nPositive value to add. \n Negative value to subtract.");
+        int value = input.nextInt();
+        i.updateValue(value);
     }
 
 }
