@@ -8,16 +8,19 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 class InventoryTest {
     private Inventory inventory;
-    private Grocery banana;
-    private Grocery milk;
-    private Grocery kale;
+    private Grocery banana = new Grocery("Banana", 12);
+    private Grocery milk = new Grocery("Milk", 3);
+    private Grocery kale = new Grocery("Kale", 5);
 
     @BeforeEach
     void runBefore() {
         inventory = new Inventory();
-        banana = new Grocery("Banana", 12);
-        milk = new Grocery("Milk", 3);
-        kale = new Grocery("Kale", 5);
+    }
+
+    @Test
+    public void testConstruct() {
+        assertEquals(0, inventory.getValue());
+        assertEquals(0, inventory.getGroceries().size());
     }
 
     @Test

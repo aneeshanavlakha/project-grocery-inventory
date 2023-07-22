@@ -6,12 +6,15 @@ public class Grocery {
     int quantity;
     int lowerLimit;
 
+    //ADD DOCUMENTATION
+
     public Grocery(String name, int quantity) {
         this.name = name;
         this.quantity = quantity;
         this.lowerLimit = 0;
     }
 
+    //ADD DOCUMENTATION
     public void changeName(String name) {
         this.name = name;
     }
@@ -21,13 +24,13 @@ public class Grocery {
     //         if quantity is 0, issues an "out of stock" alert
     public String alert() {
         if (this.quantity == this.lowerLimit) {
-            return "Running low!";
+            return "Oi! Running low!";
         } else if (this.quantity < this.lowerLimit && this.quantity > 0) {
-            return "You are " + (this.lowerLimit - this.quantity) + " items below limit";
+            return "Oi! You are " + (this.lowerLimit - this.quantity) + " items below limit!";
         } else if (this.quantity == 0) {
-            return "Out of stock - buy more!";
+            return "Oi! Out of stock - buy more!";
         } else {
-            return null;    //do i need this?
+            return "";
         }
     }
 
@@ -58,7 +61,7 @@ public class Grocery {
 
     @Override
     public String toString() {
-        return "Grocery{" + "name='" + name + '\'' + ", quantity=" + quantity + ", lowerLimit=" + lowerLimit + '}';
+        return name + ", Quantity : " + quantity + ", Lower Limit: " + lowerLimit;
     }
 
 }

@@ -13,9 +13,10 @@ import static java.awt.AWTEventMulticaster.add;
 
 public class Inventory {
 
-    private List<Grocery> groceries; //FIX!
+    private List<Grocery> groceries;
     private int value;
 
+    //ADD DOCUMENTATION
     public Inventory() {
         this.groceries = new ArrayList<Grocery>();
         this.value = 0;
@@ -59,6 +60,6 @@ public class Inventory {
 
     @Override
     public String toString() {
-        return "Inventory{" + "groceries=" + groceries + ", value=" + value + '}';
+        return "Inventory:\nValue: " + value + "\nGroceries: " + groceries;
     }
 }

@@ -21,7 +21,7 @@ public class GroceryInventoryApp {
     //EFFECTS: processes user input
     private void runGroceryInventoryApp() {
         boolean keepGoing = true;
-        String command = null;
+        String command = null; //FIX?
 
         init();
 
@@ -133,8 +133,8 @@ public class GroceryInventoryApp {
         String selection = "";
 
         while (!(selection.equals("s") || selection.equals("u") || selection.equals("r"))) {
-            System.out.println("s for set value");
-            System.out.println("u for update value");
+            System.out.println("s for set new value");
+            System.out.println("u for update current value");
             System.out.println("r for reset value");
             selection = input.next();
             selection = selection.toLowerCase();
@@ -146,23 +146,29 @@ public class GroceryInventoryApp {
             doUpdateValue(inventory);
         } else {
             inventory.reset();
+            System.out.println(inventory.toString());
         }
     }
 
     public void doAddGrocery() {
         System.out.println("Enter new grocery name:");
         String name = input.next();
-
+        name = name.toLowerCase();
         System.out.println("Enter " + name + " quantity:");
         int quantity = input.nextInt();
+        System.out.println("Enter " + name + " lower limit:");
+        int limit = input.nextInt();
 
         Grocery g = new Grocery(name, quantity);
+        g.setLowerLimit(limit);
         inventory.addGrocery(g);
 
-        System.out.println("Added to inventory: " + "Grocery name - " + name + "Grocery quantity - " + quantity);
+        System.out.println("Added to inventory: " + "\nGrocery name: " + name + "\nGrocery quantity: " + quantity
+                + "\nGrocery lower limit: " + limit);
 
         //add ability to loop back to add groceries menu i.e. "add another grocery" directly? and then quit when wanted?
     }
+
 
     //FIX!!
     //MODIFIES: this
@@ -178,7 +184,7 @@ public class GroceryInventoryApp {
         while (true) {
             System.out.println("Type grocery to remove or press q to quit");
             String name = input.next();
-            if (name.equals("q")) {
+            if (name.equals("q")) {   //add this ability in all menus?
                 return;
             }
             for (int i = 0; i < inventory.getGroceries().size(); i++) {
@@ -188,7 +194,7 @@ public class GroceryInventoryApp {
                     return;
                 }
             }
-            System.out.println("Doesn't exist! Try again."); //why is this showing up for other methods too?
+            System.out.println("Doesn't exist! Try again.");
         }
 
     }
@@ -198,45 +204,46 @@ public class GroceryInventoryApp {
     //EFFECTS: updates a given grocery's quantity or lower limit
     //         checks current grocery name against each item in the inventory
     //         if the inventory contains the name, produces true and allows user to proceed
-    //         if not produces false and error message saying "this grocery does not exist"
-    //         allows user to re-input a grocery name
+    //         if not produces false and error message and allows user to re-input a grocery name
     public void doUpdateGroceryCheck() {
         System.out.println(inventory.getGroceries());
 
         while (true) {
             System.out.println("Type grocery to update or press q to quit");
             String name = input.next();
+            name = name.toLowerCase();
             if (name.equals("q")) {
                 return;
             }
             for (int i = 0; i < inventory.getGroceries().size(); i++) {
-                if (inventory.getGroceries().get(i).getGroceryName().equals(name)) {
-                    doUpdateGrocery();
+                Grocery current = inventory.getGroceries().get(i);
+                if (current.getGroceryName().equals(name)) {
+                    doUpdateGrocery(current);
+                } else {
+                    System.out.println("Doesn't exist! Try again.");
                 }
             }
-            System.out.println("Doesn't exist! Try again.");
-        }
 
-        //add method to set alert
+        }
     }
 
-    private void doUpdateGrocery() {
+    private void doUpdateGrocery(Grocery g) {
         String selection = "";
 
         while (!(selection.equals("s") || selection.equals("u") || selection.equals("l"))) {
-            System.out.println("s for set quantity");
-            System.out.println("u for update quantity");
+            System.out.println("s for set new quantity");
+            System.out.println("u for update current quantity");
             System.out.println("l for set lower limit");
             selection = input.next();
             selection = selection.toLowerCase();
         }
 
         if (selection.equals("s")) {
-            doSetQuantity(grocery);
+            doSetQuantity(g);
         } else if (selection.equals("u")) {
-            doUpdateQuantity(grocery);
+            doUpdateQuantity(g);
         } else {
-            doSetLowerLimit(grocery);
+            doSetNewLowerLimit(g);
         }
     }
 
@@ -248,24 +255,29 @@ public class GroceryInventoryApp {
         g.setQuantity(quantity);
 
         System.out.println(g.getGroceryName() + " now has quantity " + g.getQuantity());
+
+        System.out.println(g.alert());
+
     }
 
     private void doUpdateQuantity(Grocery g) {
-        System.out.println("Input quantity to add: ");
+        System.out.println("Input value to update by: \nPositive value to add. \nNegative value to subtract.");
         int quantity = input.nextInt();
         g.updateQuantity(quantity);
 
         System.out.println(g.getGroceryName() + " now has quantity " + g.getQuantity());
+
+        System.out.println(g.alert());
     }
 
     //MODIFIES: this
     //EFFECTS: sets lower limit for grocery
-    private void doSetLowerLimit(Grocery g) {
+    private void doSetNewLowerLimit(Grocery g) {
         System.out.println("Input lower limit: ");
         int limit = input.nextInt();
         g.setLowerLimit(limit);
 
-        System.out.println(g.getGroceryName() + "now has limit" + g.getLowerLimit());
+        System.out.println(g.getGroceryName() + " now has limit " + g.getLowerLimit());
     }
 
     //MODIFIES: this
@@ -274,6 +286,8 @@ public class GroceryInventoryApp {
         System.out.println("Input new value: ");
         int value = input.nextInt();
         i.setValue(value);
+
+        System.out.println(inventory.toString());
     }
 
     //MODIFIES: this
@@ -282,6 +296,8 @@ public class GroceryInventoryApp {
         System.out.println("Input value to update by: \nPositive value to add. \n Negative value to subtract.");
         int value = input.nextInt();
         i.updateValue(value);
+
+        System.out.println(inventory.toString());
     }
 
 }

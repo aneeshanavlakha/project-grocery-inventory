@@ -14,6 +14,13 @@ class GroceryTest {
     }
 
     @Test
+    public void testConstruct() {
+      assertEquals("Banana", banana.name);
+      assertEquals(12, banana.quantity);
+      assertEquals(0, banana.lowerLimit);
+    }
+
+    @Test
     public void testChangeName() {
         banana.changeName("monkey");
         assertEquals("monkey", banana.getGroceryName());
