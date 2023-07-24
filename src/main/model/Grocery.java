@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // A grocery is an item that has a name, quantity and assigned category
-public class Grocery {
+public class Grocery implements Writable {
     String name;
     int quantity;
     int minAmount;
@@ -12,7 +15,6 @@ public class Grocery {
         this.quantity = quantity;
         this.minAmount = 0;
     }
-
 
     //REQUIRES: lower limit is >= 0
     //EFFECTS: if quantity is same as lower limit, issues a "running low" alert
@@ -72,6 +74,15 @@ public class Grocery {
     @Override
     public String toString() {
         return "Name : " + name + ", Quantity : " + quantity + ", Lower Limit: " + minAmount;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("quantity", quantity);
+        json.put("min amount", minAmount); //do i  need ot include this if it is not a param for constructor?
+        return json;
     }
 
 }

@@ -4,10 +4,14 @@ package model;
 // including their name and their quantity
 
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Inventory {
+public class Inventory implements Writable {
 
     private List<Grocery> groceries;
     private int value;
@@ -47,6 +51,10 @@ public class Inventory {
         return this.groceries;
     }
 
+    public int getNumGroceries() {
+        return this.groceries.size();
+    }
+
     public void setValue(int amount) {
         this.value = amount;
     }
@@ -58,5 +66,24 @@ public class Inventory {
     @Override
     public String toString() {
         return "Inventory:\nValue: " + value + "\nGroceries: " + groceries;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("value", value);
+        json.put("groceries", groceriesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray groceriesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Grocery t : groceries) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
     }
 }

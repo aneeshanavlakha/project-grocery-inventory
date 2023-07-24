@@ -2,17 +2,28 @@ package ui;
 
 import model.Grocery;
 import model.Inventory;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Grocery inventory application
-// based on UI modelling of TellerApp
+// Modelled on TellerApp and JsonSerializationDemo
 public class GroceryInventoryApp {
+    private static final String JSON_STORE = "./data/workroom.json";
     private Inventory inventory;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
-    //EFFECTS: run the grocery inventory application
-    public GroceryInventoryApp() {
+    //EFFECTS: constructs inventory and runs the grocery inventory application
+    public GroceryInventoryApp() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        inventory = new Inventory();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runGroceryInventoryApp();
     }
 
@@ -20,7 +31,7 @@ public class GroceryInventoryApp {
     //EFFECTS: processes user input
     private void runGroceryInventoryApp() {
         boolean keepGoing = true;
-        String command = null; //FIX?
+        String command = null;
 
         init();
 
@@ -40,15 +51,6 @@ public class GroceryInventoryApp {
         System.out.println("\nHappy Eating!");
     }
 
-    // MODIFIES: this
-    // EFFECTS: processes user command
-    private void processCommand(String command) {
-        if (command.equals("i")) {
-            doManageInventory();
-        } else {
-            System.out.println("Please make a valid selection.");
-        }
-    }
 
     //MODIFIES: this
     //EFFECTS: initializes groceries and inventories
@@ -63,7 +65,23 @@ public class GroceryInventoryApp {
     private void displayMenu() {
         System.out.println("\n");
         System.out.println("\ti -> manage inventory");
+        System.out.println("\ts -> save inventory to file");
+        System.out.println("\tl -> load inventory from file");
         System.out.println("\td -> done");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: processes user command
+    private void processCommand(String command) {
+        if (command.equals("i")) {
+            doManageInventory();
+        } else if (command.equals("s")) {
+            saveInventory();
+        } else if (command.equals("l")) {
+            loadInventory();
+        }  else {
+            System.out.println("Please make a valid selection.");
+        }
     }
 
     //MODIFIES: this
@@ -73,6 +91,30 @@ public class GroceryInventoryApp {
 
         System.out.println("\nWould you like to..");
         selectInventoryAction();
+    }
+
+
+    //EFFECTS: saves the inventory to file
+    private void saveInventory() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(inventory);
+            jsonWriter.close();
+            System.out.println("Saved inventory to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: loads inventory from file
+    private void loadInventory() {
+        try {
+            inventory = jsonReader.read();
+            System.out.println("Loaded inventory from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
     //MODIFIES: this
