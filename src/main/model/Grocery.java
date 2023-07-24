@@ -14,7 +14,7 @@ public class Grocery {
     }
 
 
-    //REQUIRES: lower limit cannot be < 0
+    //REQUIRES: lower limit is >= 0
     //EFFECTS: if quantity is same as lower limit, issues a "running low" alert
     //         if quantity is lower than limit but at least 1, alerts how many items below limit
     //         if quantity is 0, issues an "out of stock" alert
@@ -52,6 +52,8 @@ public class Grocery {
     public void setMinAmount(int limit) {
         if (limit >= 0) {
             this.minAmount = limit;
+        } else {
+            this.minAmount = 0;
         }
     }
 

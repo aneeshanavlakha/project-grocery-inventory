@@ -93,4 +93,13 @@ class InventoryTest {
         inventory.reset();
         assertEquals(0, inventory.getValue());
     }
+
+    @Test
+    public void testToString() {
+        assertEquals("Inventory:\n" + "Value: 0\n" + "Groceries: []", inventory.toString());
+
+        inventory.addGrocery(milk);
+        assertEquals("Inventory:\n" + "Value: 0\n" +
+                "Groceries: [Name : Milk, Quantity : 3, Lower Limit: 0]", inventory.toString());
+    }
 }
