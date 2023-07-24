@@ -32,15 +32,22 @@ in order to maintain a healthy diet and plan for each end-of-week grocery haul.
 
 ## User Stories
 
-- As a user, I want to be able to create a new grocery and add it to an inventory of groceries
-- As a user, I want to be able to set the name and quantity of a new grocery
+Phase 1:
+- As a user, I want to be able to create a new grocery and add it to an inventory of groceries 
+- As a user, I want to be able to set the name and quantity of a new grocery 
 - As a user, I want to be able to access my inventory of groceries
 - As a suer, I want to be able to edit and view the total value spent on groceries so far
 - As a user, I want to be able to set lower limits for each grocery
 - As a user, I want to be able to receive alerts for when my groceries go below their limit
-- As a user I want to be able to indicate that a grocery went bad
+
+Phase 2:
+- As a user, I want to be able to have the option to save my inventory to file
+- As a user, I want to be able to have the option load my saved inventory from file 
+
+Other:
 - As a user, I want to be able to see a summary of my weekly grocery-usage statistics, like
 usage frequency (most/least used), frequency of going bad etc.
+
 
 
 
