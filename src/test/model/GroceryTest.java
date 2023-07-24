@@ -17,21 +17,21 @@ class GroceryTest {
     public void testConstruct() {
       assertEquals("Banana", banana.name);
       assertEquals(12, banana.quantity);
-      assertEquals(0, banana.lowerLimit);
+      assertEquals(0, banana.minAmount);
     }
 
     @Test
     public void testChangeName() {
-        banana.changeName("monkey");
+        banana.updateName("monkey");
         assertEquals("monkey", banana.getGroceryName());
     }
 
     @Test
     public void testAlert() {
-        banana.setLowerLimit(3);
+        banana.setMinAmount(3);
         banana.setQuantity(3);
         assertEquals(3, banana.getQuantity());
-        assertEquals(3, banana.getLowerLimit());
+        assertEquals(3, banana.getMinAmount());
         assertEquals("Running low!", banana.alert());
 
         banana.updateQuantity(-2);

@@ -1,24 +1,21 @@
 package model;
 
-// a grocery category with a name, and list of groceries
+// A grocery category with a name, and list of groceries
 // including their name and their quantity
 
-//does this need to be an abstract superclass with
-// each new category as a subclass?
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.awt.AWTEventMulticaster.add;
 
 public class Inventory {
 
     private List<Grocery> groceries;
     private int value;
 
-    //ADD DOCUMENTATION
+
+    //EFFECTS: an inventory with an empty grocery list and value set to 0
     public Inventory() {
-        this.groceries = new ArrayList<Grocery>();
+        this.groceries = new ArrayList<>();
         this.value = 0;
     }
 

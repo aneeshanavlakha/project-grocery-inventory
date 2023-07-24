@@ -9,7 +9,6 @@ import java.util.Scanner;
 // based on UI modelling of TellerApp
 public class GroceryInventoryApp {
     private Inventory inventory;
-    private Grocery grocery;
     private Scanner input;
 
     //EFFECTS: run the grocery inventory application
@@ -55,7 +54,7 @@ public class GroceryInventoryApp {
     //EFFECTS: initializes groceries and inventories
     private void init() {
         inventory = new Inventory();
-        grocery = new Grocery(null, 0);
+//        Grocery grocery = new Grocery(null, 0);
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
@@ -96,19 +95,20 @@ public class GroceryInventoryApp {
     }
 
     //MODIFIES: this
-    //EFFECTS: manages a single grocery
+    //EFFECTS: manages the grocery list in inventory
     private void doManageGroceries() {
         System.out.println("\nWould you like to..");
         selectGroceriesAction();
     }
 
+    //MODIFIES: this
+    //EFFECTS: manages the value of inventory
     private void doManageValue() {
         System.out.println("Current amount spent: " + inventory.getValue());
         selectValueAction();
     }
 
-    //MODIFIES: this
-    //EFFECTS: prompts user to select add or update grocery
+    //EFFECTS: prompts user to select add, remove or update grocery
     private void selectGroceriesAction() {
         String selection = "";
 
@@ -129,6 +129,7 @@ public class GroceryInventoryApp {
         }
     }
 
+    //EFFECTS: prompts user to select set new value/update current value/reset value of inventory
     private void selectValueAction() {
         String selection = "";
 
@@ -150,6 +151,8 @@ public class GroceryInventoryApp {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds a new grocery item to the grocery list in the inventory
     public void doAddGrocery() {
         System.out.println("Enter new grocery name:");
         String name = input.next();
@@ -160,7 +163,7 @@ public class GroceryInventoryApp {
         int limit = input.nextInt();
 
         Grocery g = new Grocery(name, quantity);
-        g.setLowerLimit(limit);
+        g.setMinAmount(limit);
         inventory.addGrocery(g);
 
         System.out.println("Added to inventory: " + "\nGrocery name: " + name + "\nGrocery quantity: " + quantity
@@ -169,8 +172,6 @@ public class GroceryInventoryApp {
         //add ability to loop back to add groceries menu i.e. "add another grocery" directly? and then quit when wanted?
     }
 
-
-    //FIX!!
     //MODIFIES: this
     //EFFECTS: remove grocery from inventory
     //         checks input grocery name against each item in the inventory
@@ -199,7 +200,6 @@ public class GroceryInventoryApp {
 
     }
 
-    //FIX!!
     //MODIFIES: this, inventory
     //EFFECTS: updates a given grocery's quantity or lower limit
     //         checks current grocery name against each item in the inventory
@@ -227,24 +227,39 @@ public class GroceryInventoryApp {
         }
     }
 
+    //EFFECTS: prompts user to select update a grocery name/set or update a grocery quantity,
+    //         or set a new minimum amount for a grocery
     private void doUpdateGrocery(Grocery g) {
         String selection = "";
 
-        while (!(selection.equals("s") || selection.equals("u") || selection.equals("l"))) {
+        while (!(selection.equals("n") || (selection.equals("s") || selection.equals("u") || selection.equals("m")))) {
+            System.out.println("n for update current name");
             System.out.println("s for set new quantity");
             System.out.println("u for update current quantity");
-            System.out.println("l for set lower limit");
+            System.out.println("m for set minimum amount");
             selection = input.next();
             selection = selection.toLowerCase();
         }
 
-        if (selection.equals("s")) {
+        if (selection.equals("n")) {
+            doUpdateName(g);
+        } else if (selection.equals("s")) {
             doSetQuantity(g);
         } else if (selection.equals("u")) {
             doUpdateQuantity(g);
         } else {
-            doSetNewLowerLimit(g);
+            doSetNewMinAmount(g);
         }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: updates grocery name to given name
+    private void doUpdateName(Grocery g) {
+        System.out.println("Enter new name for " + g.getGroceryName());
+        String name = input.next();
+        g.updateName(name);
+
+        System.out.println("Updated name to " + g.getGroceryName());
     }
 
     //MODIFIES: this
@@ -260,6 +275,8 @@ public class GroceryInventoryApp {
 
     }
 
+    //MODIFIES:
+    //EFFECTS: updates quantity of this grocery by the given amount
     private void doUpdateQuantity(Grocery g) {
         System.out.println("Input value to update by: \nPositive value to add. \nNegative value to subtract.");
         int quantity = input.nextInt();
@@ -271,13 +288,13 @@ public class GroceryInventoryApp {
     }
 
     //MODIFIES: this
-    //EFFECTS: sets lower limit for grocery
-    private void doSetNewLowerLimit(Grocery g) {
+    //EFFECTS: sets the minimum amount for a grocery
+    private void doSetNewMinAmount(Grocery g) {
         System.out.println("Input lower limit: ");
         int limit = input.nextInt();
-        g.setLowerLimit(limit);
+        g.setMinAmount(limit);
 
-        System.out.println(g.getGroceryName() + " now has limit " + g.getLowerLimit());
+        System.out.println(g.getGroceryName() + " now has limit " + g.getMinAmount());
     }
 
     //MODIFIES: this

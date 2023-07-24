@@ -4,29 +4,25 @@ package model;
 public class Grocery {
     String name;
     int quantity;
-    int lowerLimit;
+    int minAmount;
 
-    //ADD DOCUMENTATION
-
+    //EFFECTS: a grocery with given name and quantity, and minAmount = 0
     public Grocery(String name, int quantity) {
         this.name = name;
         this.quantity = quantity;
-        this.lowerLimit = 0;
+        this.minAmount = 0;
     }
 
-    //ADD DOCUMENTATION
-    public void changeName(String name) {
-        this.name = name;
-    }
 
+    //REQUIRES: lower limit cannot be < 0
     //EFFECTS: if quantity is same as lower limit, issues a "running low" alert
     //         if quantity is lower than limit but at least 1, alerts how many items below limit
     //         if quantity is 0, issues an "out of stock" alert
     public String alert() {
-        if (this.quantity == this.lowerLimit) {
+        if (this.quantity == this.minAmount) {
             return "Oi! Running low!";
-        } else if (this.quantity < this.lowerLimit && this.quantity > 0) {
-            return "Oi! You are " + (this.lowerLimit - this.quantity) + " items below limit!";
+        } else if (this.quantity < this.minAmount && this.quantity > 0) {
+            return "Oi! You are " + (this.minAmount - this.quantity) + " items below limit!";
         } else if (this.quantity == 0) {
             return "Oi! Out of stock - buy more!";
         } else {
@@ -34,6 +30,13 @@ public class Grocery {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: updates grocery name to given name
+    public void updateName(String name) {
+        this.name = name;
+    }
+
+    //MODIFIES: this
     //EFFECTS: updates quantity in a positive or negative way
     public void updateQuantity(int quantity) {
         this.quantity += quantity;
@@ -43,8 +46,13 @@ public class Grocery {
         this.quantity = quantity;
     }
 
-    public void setLowerLimit(int limit) {
-        this.lowerLimit = limit;
+    //EFFECTS: sets a value on the minimum number of pieces the user
+    //         ideally wants for this grocery at all times.
+    //         limit cannot be < 0
+    public void setMinAmount(int limit) {
+        if (limit >= 0) {
+            this.minAmount = limit;
+        }
     }
 
     public String getGroceryName() {
@@ -55,13 +63,13 @@ public class Grocery {
         return this.quantity;
     }
 
-    public int getLowerLimit() {
-        return this.lowerLimit;
+    public int getMinAmount() {
+        return this.minAmount;
     }
 
     @Override
     public String toString() {
-        return name + ", Quantity : " + quantity + ", Lower Limit: " + lowerLimit;
+        return "Name : " + name + ", Quantity : " + quantity + ", Lower Limit: " + minAmount;
     }
 
 }
