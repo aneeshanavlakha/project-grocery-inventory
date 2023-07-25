@@ -12,7 +12,7 @@ import java.util.Scanner;
 // Grocery inventory application
 // Modelled on TellerApp and JsonSerializationDemo
 public class GroceryInventoryApp {
-    private static final String JSON_STORE = "./data/workroom.json";
+    private static final String JSON_STORE = "./data/inventory.json";
     private Inventory inventory;
     private Scanner input;
     private JsonWriter jsonWriter;

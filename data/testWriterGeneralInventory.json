@@ -1,0 +1,15 @@
+{
+    "value": 300,
+    "groceries": [
+        {
+            "minAmount": 8,
+            "quantity": 15,
+            "name": "peas"
+        },
+        {
+            "minAmount": 1,
+            "quantity": 2,
+            "name": "spinach"
+        }
+    ]
+}
