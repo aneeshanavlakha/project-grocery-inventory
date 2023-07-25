@@ -41,11 +41,10 @@ public class JsonReaderTest extends JsonTest {
             Inventory inv = reader.read();
             List<Grocery> groceries = inv.getGroceries();
             int value = inv.getValue();
-            assertEquals(3, groceries.size());
+            assertEquals(2, groceries.size());
             assertEquals(0, value);
             checkGrocery("banana", 12, 4, groceries.get(0));
             checkGrocery("apple", 6, 1, groceries.get(1));
-            checkGrocery("milk", 5, 2, groceries.get(2));
 
         } catch (IOException e) {
             fail("Couldn't read from file");

@@ -43,7 +43,7 @@ public class JsonReader {
     private Inventory parseInventory(JSONObject jsonObject) {
         Inventory inv = new Inventory();
         addGroceries(inv, jsonObject);
-        addValue(inv, jsonObject); //do i need a second method for value?
+        addValue(inv, jsonObject);
         return inv;
     }
 

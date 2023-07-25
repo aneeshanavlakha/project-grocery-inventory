@@ -4,12 +4,12 @@
     {
       "quantity": 12,
       "name": "banana",
-      "min amount": 4
+      "minAmount": 4
     },
     {
       "quantity": 6,
       "name": "apple",
-      "min amount": 1
+      "minAmount": 1
     }
   ]
 }
