@@ -76,7 +76,7 @@ public class Inventory implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns groceries in this inventory as a JSON array
     private JSONArray groceriesToJson() {
         JSONArray jsonArray = new JSONArray();
 

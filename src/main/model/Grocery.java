@@ -10,10 +10,10 @@ public class Grocery implements Writable {
     int minAmount;
 
     //EFFECTS: a grocery with given name and quantity, and minAmount = 0
-    public Grocery(String name, int quantity) {
+    public Grocery(String name, int quantity, int minAmount) {
         this.name = name;
         this.quantity = quantity;
-        this.minAmount = 0;
+        this.minAmount = minAmount;
     }
 
     //REQUIRES: lower limit is >= 0
@@ -50,10 +50,10 @@ public class Grocery implements Writable {
 
     //EFFECTS: sets a value on the minimum number of pieces the user
     //         ideally wants for this grocery at all times.
-    //         limit cannot be < 0
-    public void setMinAmount(int limit) {
-        if (limit >= 0) {
-            this.minAmount = limit;
+    //         minAmount cannot be < 0
+    public void setMinAmount(int minAmount) {
+        if (minAmount >= 0) {
+            this.minAmount = minAmount;
         } else {
             this.minAmount = 0;
         }
@@ -73,7 +73,7 @@ public class Grocery implements Writable {
 
     @Override
     public String toString() {
-        return "Name : " + name + ", Quantity : " + quantity + ", Lower Limit: " + minAmount;
+        return "Name : " + name + ", Quantity : " + quantity + ", Min Amount: " + minAmount;
     }
 
     @Override
@@ -81,7 +81,7 @@ public class Grocery implements Writable {
         JSONObject json = new JSONObject();
         json.put("name", name);
         json.put("quantity", quantity);
-        json.put("min amount", minAmount); //do i  need ot include this if it is not a param for constructor?
+        json.put("minAmount", minAmount);
         return json;
     }
 

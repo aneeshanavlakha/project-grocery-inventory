@@ -21,12 +21,14 @@ public class JsonReaderTest extends JsonTest {
         }
     }
 
+    //UPDATE testReaderEmptyInventory.json
     @Test
-    void testReaderEmptyWorkRoom() {
+    void testReaderEmptyInventory() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyInventory.json");
         try {
             Inventory inv = reader.read();
             assertEquals(0, inv.getNumGroceries());
+            assertEquals(0, inv.getValue());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
@@ -39,10 +41,11 @@ public class JsonReaderTest extends JsonTest {
             Inventory inv = reader.read();
             List<Grocery> groceries = inv.getGroceries();
             int value = inv.getValue();
-            assertEquals(2, groceries.size());
-            assertEquals(30, value);
+            assertEquals(3, groceries.size());
+            assertEquals(0, value);
             checkGrocery("banana", 12, 4, groceries.get(0));
-            checkGrocery("milk", 2, 1, groceries.get(1));
+            checkGrocery("apple", 6, 1, groceries.get(1));
+            checkGrocery("milk", 5, 2, groceries.get(2));
 
         } catch (IOException e) {
             fail("Couldn't read from file");

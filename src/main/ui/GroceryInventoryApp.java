@@ -56,7 +56,6 @@ public class GroceryInventoryApp {
     //EFFECTS: initializes groceries and inventories
     private void init() {
         inventory = new Inventory();
-//        Grocery grocery = new Grocery(null, 0);
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
@@ -201,15 +200,15 @@ public class GroceryInventoryApp {
         name = name.toLowerCase();
         System.out.println("Enter " + name + " quantity:");
         int quantity = input.nextInt();
-        System.out.println("Enter " + name + " lower limit:");
-        int limit = input.nextInt();
+        System.out.println("Enter " + name + " minAmount:");
+        int minAmount = input.nextInt();
 
-        Grocery g = new Grocery(name, quantity);
-        g.setMinAmount(limit);
+        Grocery g = new Grocery(name, quantity, minAmount);
+        g.setMinAmount(minAmount);
         inventory.addGrocery(g);
 
         System.out.println("Added to inventory: " + "\nGrocery name: " + name + "\nGrocery quantity: " + quantity
-                + "\nGrocery lower limit: " + limit);
+                + "\nGrocery minAmount: " + minAmount);
 
         //add ability to loop back to add groceries menu i.e. "add another grocery" directly? and then quit when wanted?
     }
@@ -332,11 +331,11 @@ public class GroceryInventoryApp {
     //MODIFIES: this
     //EFFECTS: sets the minimum amount for a grocery
     private void doSetNewMinAmount(Grocery g) {
-        System.out.println("Input lower limit: ");
-        int limit = input.nextInt();
-        g.setMinAmount(limit);
+        System.out.println("Input minAmount: ");
+        int minAmount = input.nextInt();
+        g.setMinAmount(minAmount);
 
-        System.out.println(g.getGroceryName() + " now has limit " + g.getMinAmount());
+        System.out.println(g.getGroceryName() + " now has minAmount " + g.getMinAmount());
     }
 
     //MODIFIES: this

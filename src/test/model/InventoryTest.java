@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 class InventoryTest {
     private Inventory inventory;
-    private Grocery banana = new Grocery("Banana", 12);
-    private Grocery milk = new Grocery("Milk", 3);
-    private Grocery kale = new Grocery("Kale", 5);
+    private Grocery banana = new Grocery("Banana", 12, 0);
+    private Grocery milk = new Grocery("Milk", 3, 2);
+    private Grocery kale = new Grocery("Kale", 5, 1);
 
     @BeforeEach
     void runBefore() {
@@ -28,6 +28,7 @@ class InventoryTest {
         // add one grocery
         inventory.addGrocery(banana);
         assertEquals(banana, inventory.getGroceries().get(0));
+        assertEquals(1, inventory.getNumGroceries());
     }
 
     @Test
@@ -38,6 +39,8 @@ class InventoryTest {
 
         assertEquals(banana, inventory.getGroceries().get(0));
         assertEquals(milk, inventory.getGroceries().get(1));
+        assertEquals(2, inventory.getNumGroceries());
+
     }
 
     @Test
@@ -48,10 +51,11 @@ class InventoryTest {
 
         assertEquals(banana, inventory.getGroceries().get(0));
         assertEquals(milk, inventory.getGroceries().get(1));
+        assertEquals(2, inventory.getNumGroceries());
 
         inventory.removeGrocery(milk);
+        assertEquals(1, inventory.getNumGroceries());
 
-        assertEquals(1, inventory.getGroceries().size());
     }
 
     @Test
@@ -65,7 +69,7 @@ class InventoryTest {
         inventory.removeGrocery(milk);
         inventory.removeGrocery(kale);
 
-        assertEquals(2, inventory.getGroceries().size());
+        assertEquals(2, inventory.getNumGroceries());
     }
 
     @Test
@@ -100,6 +104,6 @@ class InventoryTest {
 
         inventory.addGrocery(milk);
         assertEquals("Inventory:\n" + "Value: 0\n" +
-                "Groceries: [Name : Milk, Quantity : 3, Lower Limit: 0]", inventory.toString());
+                "Groceries: [Name : Milk, Quantity : 3, Min Amount: 0]", inventory.toString());
     }
 }

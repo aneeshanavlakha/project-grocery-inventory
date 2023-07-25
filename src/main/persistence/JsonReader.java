@@ -20,7 +20,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads inventory from file and returns it;
     // throws IOException if an error occurs reading data from file
     public Inventory read() throws IOException {
         String jsonData = readFile(source);
@@ -41,8 +41,6 @@ public class JsonReader {
 
     // EFFECTS: parses inventory from JSON object and returns it
     private Inventory parseInventory(JSONObject jsonObject) {
-        //i have just one inventory and it has no name
-        // or definable characteristic - waht do i do
         Inventory inv = new Inventory();
         addGroceries(inv, jsonObject);
         addValue(inv, jsonObject); //do i need a second method for value?
@@ -64,7 +62,8 @@ public class JsonReader {
     private void addGrocery(Inventory inv, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         int quantity = jsonObject.getInt("quantity");
-        Grocery grocery = new Grocery(name, quantity);
+        int minAmount = jsonObject.getInt("minAmount");
+        Grocery grocery = new Grocery(name, quantity, minAmount);
         inv.addGrocery(grocery);
     }
 

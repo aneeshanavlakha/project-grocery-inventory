@@ -10,7 +10,7 @@ class GroceryTest {
 
     @BeforeEach
     void runBefore(){
-        banana = new Grocery("Banana", 12);
+        banana = new Grocery("Banana", 12, 0);
     }
 
     @Test
@@ -59,6 +59,6 @@ class GroceryTest {
 
     @Test
     public void testToString() {
-        assertEquals("Name : Banana, Quantity : 12, Lower Limit: 0", banana.toString());
+        assertEquals("Name : Banana, Quantity : 12, Min Amount: 0", banana.toString());
     }
 }
