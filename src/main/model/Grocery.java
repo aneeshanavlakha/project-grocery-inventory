@@ -3,13 +3,13 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
-// A grocery is an item that has a name, quantity and assigned category
+// A grocery is an item that has a name, quantity and minAmount
 public class Grocery implements Writable {
-    String name;
-    int quantity;
-    int minAmount;
+    String name;   //Grocery name
+    int quantity;  //Grocery quantity, cannot be <0
+    int minAmount; //Minimum number of items the user ideally wants for this grocery at all times.
 
-    //EFFECTS: a grocery with given name and quantity, and minAmount = 0
+    //EFFECTS: a grocery with given name, quantity, and minAmount
     public Grocery(String name, int quantity, int minAmount) {
         this.name = name;
         this.quantity = quantity;
@@ -44,12 +44,14 @@ public class Grocery implements Writable {
         this.quantity += quantity;
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets new quantity for grocery
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    //EFFECTS: sets a value on the minimum number of pieces the user
-    //         ideally wants for this grocery at all times.
+    //MODIFIES: this
+    //EFFECTS: sets a new value for grocery
     //         minAmount cannot be < 0
     public void setMinAmount(int minAmount) {
         if (minAmount >= 0) {
@@ -71,11 +73,14 @@ public class Grocery implements Writable {
         return this.minAmount;
     }
 
+    //EFFECTS: returns a grocery as a string
     @Override
     public String toString() {
         return "Name : " + name + ", Quantity : " + quantity + ", Min Amount: " + minAmount;
     }
 
+    // Modeled on JsonSerializationDemo
+    //EFFECTS: creates new JsonObject with given grocery parameters
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

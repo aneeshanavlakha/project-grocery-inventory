@@ -10,7 +10,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 // Grocery inventory application
-// Modelled on TellerApp and JsonSerializationDemo
+// Modelled on TellerApp (https://github.students.cs.ubc.ca/CPSC210/TellerApp.git)
+//         and JsonSerializationDemo (https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git)
 public class GroceryInventoryApp {
     private static final String JSON_STORE = "./data/inventory.json";
     private Inventory inventory;
@@ -357,6 +358,5 @@ public class GroceryInventoryApp {
 
         System.out.println(inventory.toString());
     }
-
 }
 

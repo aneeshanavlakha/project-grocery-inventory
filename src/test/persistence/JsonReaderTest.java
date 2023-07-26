@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// Modeled on JsonSerializationDemo
+// Modeled on JsonReaderTest class in JsonSerializationDemo: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class JsonReaderTest extends JsonTest {
     @Test
     void testReaderNonExistentFile() {

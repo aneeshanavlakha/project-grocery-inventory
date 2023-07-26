@@ -2,14 +2,14 @@
     "value": 0,
     "groceries": [
         {
-            "minAmount": 5,
-            "quantity": 30,
-            "name": "limes"
+            "minAmount": 4,
+            "quantity": 12,
+            "name": "banana"
         },
         {
             "minAmount": 3,
-            "quantity": 9,
-            "name": "kiwi"
+            "quantity": 25,
+            "name": "apple"
         }
     ]
 }
