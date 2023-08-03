@@ -33,20 +33,25 @@ in order to maintain a healthy diet and plan for each end-of-week grocery haul.
 ## User Stories
 
 Phase 1:
-- As a user, I want to be able to create a new grocery and add it to an inventory of groceries 
-- As a user, I want to be able to set the name and quantity of a new grocery 
-- As a user, I want to be able to access my inventory of groceries
-- As a suer, I want to be able to edit and view the total value spent on groceries so far
-- As a user, I want to be able to set lower limits for each grocery
+- As a user, I want to be able to create a new grocery and add it to an inventory of groceries //GUI
+- As a user, I want to be able to set the name and quantity of a new grocery //GUI
+- As a user, I want to be able to access my inventory of groceries //GUI
+- As a user, I want to be able to edit and view the total value spent on groceries so far //GUI
+- As a user, I want to be able to set lower limits for each grocery //GUI
 - As a user, I want to be able to receive alerts for when my groceries go below their limit
 
 Phase 2:
-- As a user, I want to be able to have the option to save my inventory to file
-- As a user, I want to be able to have the option load my saved inventory from file 
+- As a user, I want to be able to have the option to save my inventory to file        //GUI
+- As a user, I want to be able to have the option load my saved inventory from file   //GUI
 
-Other:
-- As a user, I want to be able to see a summary of my weekly grocery-usage statistics, like
-usage frequency (most/least used), frequency of going bad etc.
+
+# Instructions for Grader
+
+- You can generate the first required action related to adding Xs to a Y by...
+- You can generate the second required action related to adding Xs to a Y by...
+- You can locate my visual component by...
+- You can save the state of my application by...
+- You can reload the state of my application by...
 
 
 

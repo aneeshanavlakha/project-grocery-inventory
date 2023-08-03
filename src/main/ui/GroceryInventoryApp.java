@@ -146,7 +146,7 @@ public class GroceryInventoryApp {
     //MODIFIES: this
     //EFFECTS: manages the value of inventory
     private void doManageValue() {
-        System.out.println("Current amount spent: " + inventory.getValue());
+        System.out.println("Current value spent: " + inventory.getValue());
         selectValueAction();
     }
 
@@ -243,8 +243,7 @@ public class GroceryInventoryApp {
     }
 
     //MODIFIES: this, inventory
-    //EFFECTS: updates a given grocery's quantity or lower limit
-    //         checks current grocery name against each item in the inventory
+    //EFFECTS: checks current grocery name against each item in the inventory
     //         if the inventory contains the name, produces true and allows user to proceed
     //         if not produces false and error message and allows user to re-input a grocery name
     public void doUpdateGroceryCheck() {
@@ -269,7 +268,7 @@ public class GroceryInventoryApp {
         }
     }
 
-    //EFFECTS: prompts user to select update a grocery name/set or update a grocery quantity,
+    //EFFECTS: prompts user to select update a grocery name, set/update a grocery quantity,
     //         or set a new minimum amount for a grocery
     private void doUpdateGrocery(Grocery g) {
         String selection = "";
