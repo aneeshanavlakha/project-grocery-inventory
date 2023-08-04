@@ -1,6 +1,6 @@
 package ui;
 
-// BASED ON LogformProblemStarters/SmartHome/ButtonNames ADD LINK!!
+// BASED ON LongformProblemStarters/SmartHome/ButtonNames ADD LINK!!
 
 // Names of buttons used across the GUI
 public enum ButtonNames {

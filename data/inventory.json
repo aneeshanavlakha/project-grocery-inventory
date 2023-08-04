@@ -1,8 +1,30 @@
 {
     "value": 0,
-    "groceries": [{
-        "minAmount": 1,
-        "quantity": 1,
-        "name": "bean"
-    }]
+    "groceries": [
+        {
+            "minAmount": 1,
+            "quantity": 1,
+            "name": "bean"
+        },
+        {
+            "minAmount": 3,
+            "quantity": 5,
+            "name": "banana"
+        },
+        {
+            "minAmount": 1,
+            "quantity": 1,
+            "name": "peas"
+        },
+        {
+            "minAmount": 3,
+            "quantity": 20,
+            "name": "blueberry"
+        },
+        {
+            "minAmount": 3,
+            "quantity": 20,
+            "name": "blueberry"
+        }
+    ]
 }

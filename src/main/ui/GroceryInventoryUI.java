@@ -2,19 +2,22 @@ package ui;
 
 import model.Grocery;
 import model.Inventory;
+import persistence.JsonReader;
 import ui.pages.AddGroceryTab;
 import ui.pages.ChangeValueTab;
 import ui.pages.HomeTab;
 import ui.pages.RemoveGroceryTab;
 
 import javax.swing.*;
-import java.io.FileNotFoundException;
+import java.awt.*;
+import java.io.IOException;
 
 public class GroceryInventoryUI extends JFrame {
     public static final int HOME_TAB_INDEX = 0;
     public static final int ADD_GROCERY_TAB_INDEX = 1;
     public static final int REMOVE_GROCERY_TAB_INDEX = 2;
     public static final int CHANGE_VALUE_TAB_INDEX = 3;
+    private static final String JSON_STORE = "./data/inventory.json";
 
 
     public static final int WIDTH = 600;
@@ -23,29 +26,30 @@ public class GroceryInventoryUI extends JFrame {
     private JTabbedPane sidebar;
     private Grocery grocery;
     private Inventory inventory;
+    private JsonReader reader;
 
     public static void main(String[] args) {
         new GroceryInventoryUI();
     }
 
     //MODIFIES: this
-    // EFFECTS: creates GroceryInventoryUI, loads inventory, displays sidebar and tabs and view all button
-    // DO I NEED TO LOAD (NOT DISPLAY) THE FULL INVENTORY TAB TOO?!!!
+    // EFFECTS: creates GroceryInventoryUI, loads inventory, displays sidebar and tabs
 
     private GroceryInventoryUI() {
         super("My Inventory");
         setSize(WIDTH, HEIGHT);
+        setBackground(Color. GRAY);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         inventory = new Inventory();
+        reader = new JsonReader(JSON_STORE);
         loadInventory();
 
         sidebar = new JTabbedPane();
-        sidebar.setTabPlacement(JTabbedPane.LEFT);
+        sidebar.setTabPlacement(JTabbedPane.RIGHT);
 
         loadTabs();
         add(sidebar);
-        // how do i load the view all button?
 
         setVisible(true);
     }
@@ -57,27 +61,28 @@ public class GroceryInventoryUI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: loads groceries and value from file
-    private void loadInventory() {
-        // stub
-        // waht exactly does this do? how is it diff from home tab?
-        // how do i load inventory from file?
+    public void loadInventory() {
+        try {
+            inventory = reader.read();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     //MODIFIES: this
     //EFFECTS: adds home tab, add grocery tab, remove grocery tab and change value tab to this UI
     private void loadTabs() {
-        JPanel homeTab = new HomeTab();  //what is controller in smarthomeui?
-        JPanel addGroceryTab = new AddGroceryTab();
-        JPanel removeGroceryTab = new RemoveGroceryTab();
-        JPanel changeValueTab = new ChangeValueTab();
-        // do I need to load inventory tab even though it is not displaed in the side bar?
+        JPanel homeTab = new HomeTab(inventory, this);
+        JPanel addGroceryTab = new AddGroceryTab(inventory);
+        JPanel removeGroceryTab = new RemoveGroceryTab(inventory);
+        JPanel changeValueTab = new ChangeValueTab(inventory);
 
         sidebar.add(homeTab, HOME_TAB_INDEX);
         sidebar.setTitleAt(HOME_TAB_INDEX, "Home");
         sidebar.add(addGroceryTab,ADD_GROCERY_TAB_INDEX);
-        sidebar.setTitleAt(ADD_GROCERY_TAB_INDEX, "Add Groceries");
+        sidebar.setTitleAt(ADD_GROCERY_TAB_INDEX, "Add Grocery");
         sidebar.add(removeGroceryTab, REMOVE_GROCERY_TAB_INDEX);
-        sidebar.setTitleAt(REMOVE_GROCERY_TAB_INDEX, "Remove Groceries");
+        sidebar.setTitleAt(REMOVE_GROCERY_TAB_INDEX, "Remove Grocery");
         sidebar.add(changeValueTab, CHANGE_VALUE_TAB_INDEX);
         sidebar.setTitleAt(CHANGE_VALUE_TAB_INDEX, "Change Value");
     }
@@ -86,18 +91,5 @@ public class GroceryInventoryUI extends JFrame {
     public JTabbedPane getTabbedPane() {
         return sidebar;
     }
-
-
-
-
-
-
 }
 
-
-// ADD IN IF NEEDED
-//        try {
-//            new GroceryInventoryApp();
-//        } catch (FileNotFoundException e) {
-//            System.out.println("Unable to run application: file not found");
-//        }
