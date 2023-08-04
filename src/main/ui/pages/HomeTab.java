@@ -25,24 +25,28 @@ public class HomeTab extends Tab {
         super(inventory);
         this.giUI = gui;
 
-        // Set the layout for the panel
         setLayout(new BorderLayout());
-        // Create the table model with column names and 0 rows initially
-        tableModel = new DefaultTableModel(new Object[]{"Name", "Quantity", "Price"}, 0);
-        // Create the JTable with the custom table model
+
+        int val = inventory.getValue();
+        JLabel heading = new JLabel("Amount Spent So Far: $" + val);
+        heading.setFont(new Font("Arial", Font.BOLD, 18));
+        heading.setHorizontalAlignment(SwingConstants.CENTER);
+        add(heading, BorderLayout.NORTH);
+
+        loadTable(inventory);
+        loadButton();
+    }
+
+    private void loadTable(Inventory inventory) {
+        tableModel = new DefaultTableModel(new Object[]{"Name", "Quantity", "Minimum Amount"}, 0);
         itemTable = new JTable(tableModel);
-        // Add the JTable to a scroll pane to enable scrolling if needed
         JScrollPane scrollPane = new JScrollPane(itemTable);
-        // Add the scroll pane to the panel's center
         add(scrollPane, BorderLayout.CENTER);
-        // Add some sample data to the table
         for (Grocery grocery : inventory.getGroceries()) {
             tableModel.addRow(new Object[]
                     {grocery.getGroceryName(), grocery.getQuantity(), grocery.getMinAmount()});
         }
-
-        loadButton();
-
+        add(scrollPane, BorderLayout.CENTER);
     }
 
     //Load button that reloads inventory once updated
@@ -58,7 +62,8 @@ public class HomeTab extends Tab {
     }
 }
 
-// bordered heading
+// bordered heading "My inventory"
+// subheading with value displayed
 // jtable that has 3 separate columns for name, qty and minamount
 // table updates as things are added to the inventory ie whenever save is hit in other tabs
 // reload button loads all values in inventory

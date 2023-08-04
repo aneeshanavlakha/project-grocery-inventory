@@ -52,6 +52,7 @@ public abstract class Tab extends JPanel {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
     }
+}
 
 //    //quit button (home tab overrides to null?)
 //    private void quitButton() {
@@ -67,7 +68,7 @@ public abstract class Tab extends JPanel {
 //
 //    // EFFECTS: return to home tab
 //    private void quit() {
-//        cardLayout.show(mainPanel,);
-}
+//        cardLayout.show(mainPanel,); //how do i do this
+
 
 

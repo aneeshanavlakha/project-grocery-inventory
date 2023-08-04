@@ -53,7 +53,6 @@ public class AddGroceryTab extends Tab {
         inventory.addGrocery(g);
         super.save();
     }
-
 }
 
 // box to add new name
