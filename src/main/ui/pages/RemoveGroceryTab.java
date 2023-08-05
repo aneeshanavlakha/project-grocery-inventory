@@ -22,10 +22,22 @@ public class RemoveGroceryTab extends Tab {
         setUpPanel();
     }
 
-    // EFFECTS: sets up dropdown with list of groceries in inventory to select from
+    // EFFECTS: !!
     public void setUpPanel() {
         centerPanel.removeAll();
+        JScrollPane scrollPane = setTable();
+        makeSelectionModelList();
+        centerPanel.add(scrollPane, BorderLayout.CENTER);
+        centerPanel.revalidate();
+        centerPanel.repaint();
+    }
 
+    private void makeSelectionModelList() {
+        ListSelectionModel selectionModel = itemTable.getSelectionModel();
+        selectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+    }
+
+    private JScrollPane setTable() {
         tableModel = new DefaultTableModel(new Object[]{"Name", "Quantity", "Minimum Amount"}, 0);
         itemTable = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(itemTable);
@@ -34,14 +46,7 @@ public class RemoveGroceryTab extends Tab {
             tableModel.addRow(new Object[]
                     {grocery.getGroceryName(), grocery.getQuantity(), grocery.getMinAmount()});
         }
-
-        ListSelectionModel selectionModel = itemTable.getSelectionModel();
-        selectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-
-        centerPanel.add(scrollPane, BorderLayout.CENTER);
-
-        centerPanel.revalidate();
-        centerPanel.repaint();
+        return scrollPane;
     }
 
     @Override

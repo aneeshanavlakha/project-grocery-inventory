@@ -2,10 +2,8 @@ package ui.pages;
 
 import model.Grocery;
 import model.Inventory;
-import ui.GroceryInventoryUI;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class AddGroceryTab extends Tab {
     JTextField name;
@@ -14,9 +12,6 @@ public class AddGroceryTab extends Tab {
 
     public AddGroceryTab(Inventory inventory) {
         super(inventory);
-        // quantity text box not showing up
-        // allows you to add text in random point on page
-        // sometimes setuppanel only shows up when you click the page
         setUpPanel();
     }
 
@@ -53,6 +48,7 @@ public class AddGroceryTab extends Tab {
                 Integer.parseInt(minAmount.getText()));
         inventory.addGrocery(g);
         super.save();
+
     }
 }
 

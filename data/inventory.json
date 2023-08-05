@@ -1,11 +1,6 @@
 {
-    "value": 90,
+    "value": 100,
     "groceries": [
-        {
-            "minAmount": 3,
-            "quantity": 20,
-            "name": "blueberry"
-        },
         {
             "minAmount": 3,
             "quantity": 20,
@@ -20,6 +15,31 @@
             "minAmount": 1,
             "quantity": 1000,
             "name": "carrots"
+        },
+        {
+            "minAmount": 999,
+            "quantity": 1000,
+            "name": "beans"
+        },
+        {
+            "minAmount": 1,
+            "quantity": 0,
+            "name": "salad (fruit)"
+        },
+        {
+            "minAmount": 160,
+            "quantity": -90,
+            "name": "test"
+        },
+        {
+            "minAmount": 8,
+            "quantity": 9,
+            "name": "test1"
+        },
+        {
+            "minAmount": 80,
+            "quantity": 20,
+            "name": "test2"
         }
     ]
 }

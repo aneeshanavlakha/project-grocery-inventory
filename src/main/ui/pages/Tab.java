@@ -14,14 +14,12 @@ public abstract class Tab extends JPanel {
     protected JPanel centerPanel;
     private JsonWriter jsonWriter;
     private JButton saveButton;
-//    private JButton quitButton;
 
     protected Inventory inventory;
 
     public Tab(Inventory inventory) {
         setLayout(new BorderLayout());
         saveButton();
-//        quitButton();
 
         this.inventory = inventory;
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -33,7 +31,6 @@ public abstract class Tab extends JPanel {
     //??
     protected void saveButton() {
         saveButton = new JButton("Save");
-//        saveButton.setBounds(300, 350, 25, 25);
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,22 +53,6 @@ public abstract class Tab extends JPanel {
         }
     }
 }
-
-//    //quit button (home tab overrides to null?)
-//    private void quitButton() {
-//        quitButton = new JButton("Quit");
-//        quitButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                quit();
-//            }
-//        });
-//        add(quitButton, BorderLayout.SOUTH);  // causing a second panel on bottom half of screen
-//    }
-//
-//    // EFFECTS: return to home tab
-//    private void quit() {
-//        cardLayout.show(mainPanel,); //how do i do this
 
 
 
