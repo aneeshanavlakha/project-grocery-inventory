@@ -24,7 +24,6 @@ public class GroceryInventoryUI extends JFrame {
     public static final int HEIGHT = 400;
 
     private JTabbedPane sidebar;
-    private Grocery grocery;
     private Inventory inventory;
     private JsonReader reader;
 

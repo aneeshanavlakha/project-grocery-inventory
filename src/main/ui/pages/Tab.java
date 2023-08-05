@@ -13,14 +13,13 @@ public abstract class Tab extends JPanel {
     private static final String JSON_STORE = "./data/inventory.json";
     protected JPanel centerPanel;
     private JsonWriter jsonWriter;
-    private JButton saveButton;
+    protected JButton saveButton;
 
     protected Inventory inventory;
 
     public Tab(Inventory inventory) {
         setLayout(new BorderLayout());
         saveButton();
-
         this.inventory = inventory;
         jsonWriter = new JsonWriter(JSON_STORE);
 
@@ -42,14 +41,14 @@ public abstract class Tab extends JPanel {
 
     //??
     protected void save() {
-        System.out.println("Saved changes.");
+        System.out.println("Saved changes."); //remove
         try {
             jsonWriter.open();
             jsonWriter.write(inventory);
             jsonWriter.close();
-            System.out.println("Saved inventory to " + JSON_STORE);
+            System.out.println("Saved inventory to " + JSON_STORE);  //remove
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
+            System.out.println("Unable to write to file: " + JSON_STORE);  //remove
         }
     }
 }

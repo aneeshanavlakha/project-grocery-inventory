@@ -1,5 +1,5 @@
 {
-    "value": 100,
+    "value": 9,
     "groceries": [
         {
             "minAmount": 3,
@@ -7,39 +7,14 @@
             "name": "blueberry"
         },
         {
-            "minAmount": 5,
-            "quantity": 90,
-            "name": "burrito"
-        },
-        {
-            "minAmount": 1,
-            "quantity": 1000,
-            "name": "carrots"
-        },
-        {
-            "minAmount": 999,
-            "quantity": 1000,
-            "name": "beans"
-        },
-        {
-            "minAmount": 1,
-            "quantity": 0,
-            "name": "salad (fruit)"
-        },
-        {
-            "minAmount": 160,
-            "quantity": -90,
+            "minAmount": 484,
+            "quantity": 99,
             "name": "test"
         },
         {
-            "minAmount": 8,
-            "quantity": 9,
-            "name": "test1"
-        },
-        {
-            "minAmount": 80,
-            "quantity": 20,
-            "name": "test2"
+            "minAmount": 4,
+            "quantity": 67,
+            "name": "hh"
         }
     ]
 }

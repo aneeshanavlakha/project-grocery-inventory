@@ -48,7 +48,6 @@ public class AddGroceryTab extends Tab {
                 Integer.parseInt(minAmount.getText()));
         inventory.addGrocery(g);
         super.save();
-
     }
 }
 

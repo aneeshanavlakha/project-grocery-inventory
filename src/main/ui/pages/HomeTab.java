@@ -12,9 +12,6 @@ import java.awt.event.ActionListener;
 
 
 public class HomeTab extends Tab {
-    private static final String HEADING = "My Inventory";
-    private static final String VALUE = "Value: ";
-
     private JTable itemTable;
     private DefaultTableModel tableModel;
     private JButton loadButton;
