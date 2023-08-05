@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 
 public abstract class Tab extends JPanel {
     private static final String JSON_STORE = "./data/inventory.json";
-
+    protected JPanel centerPanel;
     private JsonWriter jsonWriter;
     private JButton saveButton;
 //    private JButton quitButton;
@@ -25,6 +25,9 @@ public abstract class Tab extends JPanel {
 
         this.inventory = inventory;
         jsonWriter = new JsonWriter(JSON_STORE);
+
+        centerPanel = new JPanel(new GridLayout(3,2));
+        add(centerPanel, BorderLayout.CENTER);
     }
 
     //??

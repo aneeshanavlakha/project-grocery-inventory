@@ -14,7 +14,6 @@ public class AddGroceryTab extends Tab {
 
     public AddGroceryTab(Inventory inventory) {
         super(inventory);
-        this.setLayout(super.getLayout());
         // quantity text box not showing up
         // allows you to add text in random point on page
         // sometimes setuppanel only shows up when you click the page
@@ -28,22 +27,24 @@ public class AddGroceryTab extends Tab {
         label1.setBounds(10, 20, 200, 25);
         name = new JTextField();
         name.setBounds(200, 20, 165, 25);
-        add(label1);
-        add(name);
+        centerPanel.add(label1);
+        centerPanel.add(name);
 
         JLabel label2 = new JLabel("Grocery Quantity:");
         label2.setBounds(10, 60, 200, 25);
         quantity = new JTextField();
-        quantity.setBounds(200, 60, 50, 25);  //not showing up
-        add(label2);
-        add(quantity);
+        quantity.setBounds(200, 60, 50, 25);
+        //add ability to only enter ints
+        centerPanel.add(label2);
+        centerPanel.add(quantity);
 
         JLabel label3 = new JLabel("Minimum Amount of Grocery:");
         label3.setBounds(10, 100, 200, 25);
         minAmount = new JTextField();
-        quantity.setBounds(200, 100, 50, 25);
-        add(label3);
-        add(minAmount);
+        minAmount.setBounds(200, 100, 50, 25); //not showing up
+        //add ability to only enter ints
+        centerPanel.add(label3);
+        centerPanel.add(minAmount);
     }
 
     @Override

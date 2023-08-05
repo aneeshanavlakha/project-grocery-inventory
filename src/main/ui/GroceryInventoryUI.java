@@ -42,7 +42,6 @@ public class GroceryInventoryUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         inventory = new Inventory();
-        reader = new JsonReader(JSON_STORE);
         loadInventory();
 
         sidebar = new JTabbedPane();
@@ -62,6 +61,7 @@ public class GroceryInventoryUI extends JFrame {
     // MODIFIES: this
     // EFFECTS: loads groceries and value from file
     public void loadInventory() {
+        reader = new JsonReader(JSON_STORE);
         try {
             inventory = reader.read();
         } catch (IOException e) {

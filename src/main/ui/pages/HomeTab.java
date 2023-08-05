@@ -18,35 +18,43 @@ public class HomeTab extends Tab {
     private JTable itemTable;
     private DefaultTableModel tableModel;
     private JButton loadButton;
-    private GroceryInventoryUI giUI;
+    private GroceryInventoryUI gui;
 
 
     public HomeTab(Inventory inventory, GroceryInventoryUI gui) {
         super(inventory);
-        this.giUI = gui;
+        this.gui = gui;
+        centerPanel.setLayout(new BorderLayout());
+        setPage(inventory);
+        loadButton();
+    }
 
-        setLayout(new BorderLayout());
+    private void setPage(Inventory inventory) {
+        centerPanel.removeAll();
+        displayValue(inventory);
+        loadTable(inventory);
+        centerPanel.revalidate();
+        centerPanel.repaint();
+    }
 
+    private void displayValue(Inventory inventory) {
         int val = inventory.getValue();
         JLabel heading = new JLabel("Amount Spent So Far: $" + val);
         heading.setFont(new Font("Arial", Font.BOLD, 18));
         heading.setHorizontalAlignment(SwingConstants.CENTER);
-        add(heading, BorderLayout.NORTH);
-
-        loadTable(inventory);
-        loadButton();
+        centerPanel.add(heading, BorderLayout.NORTH);
     }
 
     private void loadTable(Inventory inventory) {
         tableModel = new DefaultTableModel(new Object[]{"Name", "Quantity", "Minimum Amount"}, 0);
         itemTable = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(itemTable);
-        add(scrollPane, BorderLayout.CENTER);
+        centerPanel.add(scrollPane, BorderLayout.CENTER);
         for (Grocery grocery : inventory.getGroceries()) {
             tableModel.addRow(new Object[]
                     {grocery.getGroceryName(), grocery.getQuantity(), grocery.getMinAmount()});
         }
-        add(scrollPane, BorderLayout.CENTER);
+        centerPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
     //Load button that reloads inventory once updated
@@ -56,7 +64,8 @@ public class HomeTab extends Tab {
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                giUI.loadInventory();    //not reloading updated inventory on click
+                gui.loadInventory();    //not reloading updated inventory on click
+                setPage(inventory);
             }
         });
     }
