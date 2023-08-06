@@ -27,8 +27,8 @@ public class HomeTab extends Tab {
         loadButton();
     }
 
-    // MODIFIES: centerpanel
-    // EFFECTS: refreshes this tab to display up-to-date information on inventory value and grocery table
+    // MODIFIES: this panel
+    // EFFECTS: refreshes this panel to display up-to-date information on inventory value and grocery table
     private void setUpPanel(Inventory inventory) {
         centerPanel.removeAll();
         displayValue(inventory);
@@ -64,13 +64,30 @@ public class HomeTab extends Tab {
     // EFFECTS: load button that refreshes inventory to display any changes
     private void loadButton() {
         loadButton = new JButton("Refresh Inventory");
+        JButton addButton = new JButton("Add");
+        JButton removeButton = new JButton("Remove");
+
+        JPanel buttonRow = formatButtonRow(loadButton);
+        buttonRow.add(addButton);
+        buttonRow.add(removeButton);
+
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gui.loadInventory();    //not reloading updated inventory on click
+                gui.loadInventory();
                 setUpPanel(inventory);
             }
         });
-        add(loadButton, BorderLayout.SOUTH);
+
+        addButton.addActionListener(e -> {
+            gui.getPane().setSelectedIndex(1);
+        });
+
+        removeButton.addActionListener(e -> {
+            gui.getPane().setSelectedIndex(2);
+        });
+
+        add(buttonRow, BorderLayout.SOUTH);
     }
+
 }

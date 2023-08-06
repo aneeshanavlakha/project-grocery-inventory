@@ -25,24 +25,38 @@ public abstract class Tab extends JPanel {
         setLayout(new BorderLayout());
         saveButton();
 
-        centerPanel = new JPanel(new GridLayout(3,2));
+        centerPanel = new JPanel(new GridLayout(3, 2));
         add(centerPanel, BorderLayout.CENTER);
     }
 
     // MODIFIES: this
-    // EFFECTS: save button that triggers save action on press
+    // EFFECTS: creates save button in a panel, that triggers save action on press
     protected void saveButton() {
         saveButton = new JButton("Save");
+
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 save();
             }
         });
-        add(saveButton, BorderLayout.SOUTH);
+
+        JPanel buttonRow = formatButtonRow(saveButton);
+        buttonRow.add(saveButton);
+
+        add(buttonRow, BorderLayout.SOUTH);
     }
 
-    // REQUIRES: save button be pressed
+    // MODIFIES: this
+    // EFFECTS: creates a row for buttons
+    public JPanel formatButtonRow(JButton b) {
+        JPanel p = new JPanel();
+        p.setLayout(new FlowLayout());
+        p.add(b);
+
+        return p;
+    }
+
     // MODIFIES: JSON_STORE
     // EFFECTS: writes user input to json
     protected void save() {

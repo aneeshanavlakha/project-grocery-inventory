@@ -87,5 +87,9 @@ public class GroceryInventoryUI extends JFrame {
         sidebar.setTitleAt(CHANGE_VALUE_TAB_INDEX, "Change Value");
     }
 
+    public JTabbedPane getPane() {
+        return sidebar;
+    }
+
 }
 

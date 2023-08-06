@@ -12,11 +12,15 @@ public class ChangeValueTab extends Tab {
     // REQUIRES: inventory from store
     public ChangeValueTab(Inventory inventory) {
         super(inventory);
+
+        centerPanel = new JPanel(new GridLayout(3,1));
+        add(centerPanel, BorderLayout.CENTER);
+
         setUpPanel();
     }
 
     // MODIFIES: centerpanel
-    // EFFECTS: refreshes this tab to display up-to-date inventory value and a field to enter new value
+    // EFFECTS: displays up-to-date inventory value and a field to enter new value
     private void setUpPanel() {
         centerPanel.removeAll();
         displayValue(inventory);
@@ -25,29 +29,31 @@ public class ChangeValueTab extends Tab {
         centerPanel.repaint();
     }
 
-    // REQUIRES: input is >= 0
     // MODIFIES: centerpanel
-    // EFFECTS: label and text box that allows user to input new value
-    private void displayValueEntryObjects() {
-        JLabel label = new JLabel("Set new value: ");
-        label.setBounds(10, 60, 200, 25);
-        valueEntry = new JTextField();
-        valueEntry.setBounds(200, 60, 50, 25);
-        centerPanel.add(label);
-        centerPanel.add(valueEntry);
-    }
-
-    // MODIFIES: inventory, centerpanel
     // EFFECTS: displays value in inventory
     private void displayValue(Inventory inventory) {
         int val = inventory.getValue();
         JLabel heading = new JLabel("Amount Spent So Far: $" + val);
         heading.setFont(new Font("Arial", Font.BOLD, 18));
         heading.setHorizontalAlignment(SwingConstants.CENTER);
+
         centerPanel.add(heading, BorderLayout.NORTH);
     }
 
-    // REQUIRES: same as super
+    // MODIFIES: centerpanel
+    // EFFECTS: adds label and text box that allows user to input new value
+    private void displayValueEntryObjects() {
+        JPanel subPanel = new JPanel(new GridLayout(1,2));
+        JLabel label = new JLabel("Set new value: ");
+        label.setFont(new Font("Arial", Font.PLAIN, 15));
+        valueEntry = new JTextField();
+
+        subPanel.add(label);
+        subPanel.add(valueEntry);
+        centerPanel.add(subPanel);
+    }
+
+
     // MODIFIES: inventory, centerpanel
     // EFFECTS:  saves value input to store, refreshes page to display new value, calls on image
     @Override
@@ -59,11 +65,11 @@ public class ChangeValueTab extends Tab {
     }
 
     // MODIFIES: centerpanel
-    // EFFECTS: displays image on panel
+    // EFFECTS: displays image on lower panel
     private void displayImage() {
         ImageIcon icon = new ImageIcon(IMG_PATH);
         JLabel imageLabel = new JLabel(icon);
-        imageLabel.setBounds(100, 200, 5, 5);
+
         centerPanel.add(imageLabel);
     }
 }

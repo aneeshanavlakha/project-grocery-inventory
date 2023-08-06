@@ -22,8 +22,8 @@ public class RemoveGroceryTab extends Tab {
         setUpPanel();
     }
 
-    // MODIFIES: centerpanel
-    // EFFECTS: refreshes this tab to display up-to-date information on inventory value and selection model list
+    // MODIFIES: this panel
+    // EFFECTS: sets up up-to-date information on inventory value and selection model list
     private void setUpPanel() {
         centerPanel.removeAll();
         setTable();
@@ -46,7 +46,7 @@ public class RemoveGroceryTab extends Tab {
         centerPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
-    // REQUIRES: items are selceted from table
+    // REQUIRES: items are selected from table
     // MODIFIES: tableModel
     // EFFECTS: creates a list of table items users are selecting
     private void makeSelectionModelList() {
@@ -55,21 +55,36 @@ public class RemoveGroceryTab extends Tab {
     }
 
     // MODIFIES: same as super
-    // EFFECTS: same as super but with different name displayed on button
+    // EFFECTS: creates a remove and refresh inventory button that carry out save and refresh
+    //          functions respectively
     @Override
     protected void saveButton() {
-        saveButton = new JButton("Refresh/Save Changes");
+        saveButton = new JButton("Remove");
+        JButton refreshButton = new JButton("Refresh Inventory");
+
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 save();
             }
         });
-        add(saveButton, BorderLayout.SOUTH);
+
+        refreshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setUpPanel();
+            }
+        });
+
+        JPanel buttonRow = formatButtonRow(saveButton);
+        buttonRow.add(saveButton);
+        buttonRow.add(refreshButton);
+
+        add(buttonRow, BorderLayout.SOUTH);
     }
 
-    // REQUIRES: same as super + selection mode list is not empty
-    // MODIFIES: this, selection mode list, centerpanel
+    // REQUIRES: selection mode list is not empty
+    // MODIFIES: selection mode list, centerpanel
     // EFFECTS: removes the groceries present on the selection mode list from inventory
     //          and updates the panel to present refreshed table of groceries
     @Override
@@ -85,6 +100,7 @@ public class RemoveGroceryTab extends Tab {
         for (Grocery g : newGroc) {
             inventory.removeGrocery(g);
         }
+
         super.save();
         setUpPanel();
     }
