@@ -9,15 +9,15 @@ class GroceryTest {
     private Grocery banana;
 
     @BeforeEach
-    void runBefore(){
+    void runBefore() {
         banana = new Grocery("Banana", 12, 0);
     }
 
     @Test
     public void testConstruct() {
-      assertEquals("Banana", banana.name);
-      assertEquals(12, banana.quantity);
-      assertEquals(0, banana.minAmount);
+        assertEquals("Banana", banana.name);
+        assertEquals(12, banana.quantity);
+        assertEquals(0, banana.minAmount);
     }
 
     @Test
@@ -38,6 +38,7 @@ class GroceryTest {
         assertEquals(1, banana.getQuantity());
 
     }
+
     @Test
     public void testAlert() {
         banana.setMinAmount(3);

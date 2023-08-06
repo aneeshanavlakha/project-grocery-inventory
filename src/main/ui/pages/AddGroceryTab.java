@@ -2,6 +2,7 @@ package ui.pages;
 
 import model.Grocery;
 import model.Inventory;
+
 import javax.swing.*;
 
 // Add grocery page of UI

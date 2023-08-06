@@ -38,7 +38,7 @@ public class GroceryInventoryUI extends JFrame {
     private GroceryInventoryUI() {
         super("My Inventory");
         setSize(WIDTH, HEIGHT);
-        setBackground(Color. GRAY);
+        setBackground(Color.GRAY);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         inventory = new Inventory();
@@ -79,7 +79,7 @@ public class GroceryInventoryUI extends JFrame {
 
         sidebar.add(homeTab, HOME_TAB_INDEX);
         sidebar.setTitleAt(HOME_TAB_INDEX, "Home");
-        sidebar.add(addGroceryTab,ADD_GROCERY_TAB_INDEX);
+        sidebar.add(addGroceryTab, ADD_GROCERY_TAB_INDEX);
         sidebar.setTitleAt(ADD_GROCERY_TAB_INDEX, "Add Grocery");
         sidebar.add(removeGroceryTab, REMOVE_GROCERY_TAB_INDEX);
         sidebar.setTitleAt(REMOVE_GROCERY_TAB_INDEX, "Remove Grocery");

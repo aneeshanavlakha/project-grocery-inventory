@@ -1,6 +1,7 @@
 package ui.pages;
 
 import model.Inventory;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,7 +14,7 @@ public class ChangeValueTab extends Tab {
     public ChangeValueTab(Inventory inventory) {
         super(inventory);
 
-        centerPanel = new JPanel(new GridLayout(3,1));
+        centerPanel = new JPanel(new GridLayout(3, 1));
         add(centerPanel, BorderLayout.CENTER);
 
         setUpPanel();
@@ -43,7 +44,7 @@ public class ChangeValueTab extends Tab {
     // MODIFIES: centerpanel
     // EFFECTS: adds label and text box that allows user to input new value
     private void displayValueEntryObjects() {
-        JPanel subPanel = new JPanel(new GridLayout(1,2));
+        JPanel subPanel = new JPanel(new GridLayout(1, 2));
         JLabel label = new JLabel("Set new value: ");
         label.setFont(new Font("Arial", Font.PLAIN, 15));
         valueEntry = new JTextField();
