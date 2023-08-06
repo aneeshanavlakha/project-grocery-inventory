@@ -211,7 +211,6 @@
 //        System.out.println("Added to inventory: " + "\nGrocery name: " + name + "\nGrocery quantity: " + quantity
 //                + "\nGrocery minAmount: " + minAmount);
 //
-//        //add ability to loop back to add groceries menu i.e. "add another grocery" directly? and then quit when wanted?
 //    }
 //
 //    //MODIFIES: this
@@ -273,7 +272,8 @@
 //    private void doUpdateGrocery(Grocery g) {
 //        String selection = "";
 //
-//        while (!(selection.equals("n") || (selection.equals("s") || selection.equals("u") || selection.equals("m")))) {
+//        while (!(selection.equals("n") || (selection.equals("s") ||
+//        selection.equals("u") || selection.equals("m")))) {
 //            System.out.println("n for update current name");
 //            System.out.println("s for set new quantity");
 //            System.out.println("u for update current quantity");
