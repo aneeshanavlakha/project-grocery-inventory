@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+// Home page of UI
 public class HomeTab extends Tab {
     private JTable itemTable;
     private DefaultTableModel tableModel;
@@ -18,6 +18,7 @@ public class HomeTab extends Tab {
     private GroceryInventoryUI gui;
 
 
+    // REQUIRES: inventory from store, access to grocery inventory fields
     public HomeTab(Inventory inventory, GroceryInventoryUI gui) {
         super(inventory);
         this.gui = gui;
@@ -26,6 +27,8 @@ public class HomeTab extends Tab {
         loadButton();
     }
 
+    // MODIFIES: centerpanel
+    // EFFECTS: refreshes this tab to display up-to-date information on inventory value and grocery table
     private void setUpPanel(Inventory inventory) {
         centerPanel.removeAll();
         displayValue(inventory);
@@ -34,6 +37,7 @@ public class HomeTab extends Tab {
         centerPanel.repaint();
     }
 
+    // EFFECTS: displays the value from inventory at the top of the panel
     private void displayValue(Inventory inventory) {
         int val = inventory.getValue();
         JLabel heading = new JLabel("Amount Spent So Far: $" + val);
@@ -42,6 +46,8 @@ public class HomeTab extends Tab {
         centerPanel.add(heading, BorderLayout.NORTH);
     }
 
+    // MODIFIES: centerpanel
+    // EFFECTS: displays a table with grocery information (name, quantity, minimum amount) and allows for scrolling
     private void setTable(Inventory inventory) {
         tableModel = new DefaultTableModel(new Object[]{"Name", "Quantity", "Minimum Amount"}, 0);
         itemTable = new JTable(tableModel);
@@ -54,9 +60,10 @@ public class HomeTab extends Tab {
         centerPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
-    //Load button that reloads inventory once updated
+    // MODIFIES: this
+    // EFFECTS: load button that refreshes inventory to display any changes
     private void loadButton() {
-        loadButton = new JButton("Reload Inventory");
+        loadButton = new JButton("Refresh Inventory");
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -64,12 +71,6 @@ public class HomeTab extends Tab {
                 setUpPanel(inventory);
             }
         });
-        this.add(loadButton, BorderLayout.SOUTH);
+        add(loadButton, BorderLayout.SOUTH);
     }
 }
-
-// bordered heading "My inventory"
-// subheading with value displayed
-// jtable that has 3 separate columns for name, qty and minamount
-// table updates as things are added to the inventory ie whenever save is hit in other tabs
-// reload button loads all values in inventory

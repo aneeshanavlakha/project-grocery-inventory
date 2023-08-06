@@ -2,31 +2,29 @@ package ui.pages;
 
 import model.Grocery;
 import model.Inventory;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-
+// Remove grocery page of UI
 public class RemoveGroceryTab extends Tab {
-    private static String IMG_PATH = "data/projectimage.jpg";
-
     private JTable itemTable;
     private DefaultTableModel tableModel;
 
+    // REQUIRES: inventory from store
     public RemoveGroceryTab(Inventory inventory) {
         super(inventory);
         centerPanel.setLayout(new BorderLayout());
         setUpPanel();
     }
 
-    // EFFECTS: !!
-    public void setUpPanel() {
+    // MODIFIES: centerpanel
+    // EFFECTS: refreshes this tab to display up-to-date information on inventory value and selection model list
+    private void setUpPanel() {
         centerPanel.removeAll();
         setTable();
         makeSelectionModelList();
@@ -34,7 +32,8 @@ public class RemoveGroceryTab extends Tab {
         centerPanel.repaint();
     }
 
-
+    // MODIFIES: centerpanel
+    // EFFECTS: displays a table with grocery information (name, quantity, minimum amount) and allows for scrolling
     private void setTable() {
         tableModel = new DefaultTableModel(new Object[]{"Name", "Quantity", "Minimum Amount"}, 0);
         itemTable = new JTable(tableModel);
@@ -47,11 +46,16 @@ public class RemoveGroceryTab extends Tab {
         centerPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
+    // REQUIRES: items are selceted from table
+    // MODIFIES: tableModel
+    // EFFECTS: creates a list of table items users are selecting
     private void makeSelectionModelList() {
         ListSelectionModel selectionModel = itemTable.getSelectionModel();
         selectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     }
 
+    // MODIFIES: same as super
+    // EFFECTS: same as super but with different name displayed on button
     @Override
     protected void saveButton() {
         saveButton = new JButton("Refresh/Save Changes");
@@ -64,7 +68,10 @@ public class RemoveGroceryTab extends Tab {
         add(saveButton, BorderLayout.SOUTH);
     }
 
-
+    // REQUIRES: same as super + selection mode list is not empty
+    // MODIFIES: this, selection mode list, centerpanel
+    // EFFECTS: removes the groceries present on the selection mode list from inventory
+    //          and updates the panel to present refreshed table of groceries
     @Override
     protected void save() {
         List<Grocery> groceries = inventory.getGroceries();
@@ -82,50 +89,5 @@ public class RemoveGroceryTab extends Tab {
         setUpPanel();
     }
 }
-// drop down menu with names of all current groceries
-// when user selects a grocery and hits "save", grocery item is
-// removed from inventory and changes reflect on home page
 
-//    private void setUpPopUp() {
-//        JButton popupButton = new JButton("Show Popup");
-//        popupButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                showPopupImage();
-//            }
-//        });
-//
-//        centerPanel.add(popupButton);
-//    }
-//
-//    private void showPopupImage() {
-//        JDialog dialog = new JDialog();
-////        dialog.setTitle("Popup Image");
-//        dialog.setModal(true);
-//        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//
-//        try {
-//            BufferedImage image = ImageIO.read(getClass().getResource(IMG_PATH));
-//            ImageIcon imageIcon = new ImageIcon(image);
-//
-//            JLabel label = new JLabel(imageIcon);
-//            dialog.add(label);
-//
-//            JButton closeButton = new JButton("Close");
-//            closeButton.addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    dialog.dispose(); // Close the dialog when the "Close" button is clicked
-//                }
-//            });
-//
-//            dialog.add(closeButton, BorderLayout.EAST);
-//
-//            dialog.pack();
-//            dialog.setLocationRelativeTo(null); // Center the dialog on screen
-//            dialog.setVisible(true);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 

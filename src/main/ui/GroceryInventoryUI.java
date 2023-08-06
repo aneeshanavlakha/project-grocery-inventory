@@ -1,8 +1,8 @@
 package ui;
 
-import model.Grocery;
 import model.Inventory;
 import persistence.JsonReader;
+
 import ui.pages.AddGroceryTab;
 import ui.pages.ChangeValueTab;
 import ui.pages.HomeTab;
@@ -12,14 +12,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+// A Grocery Inventory UI that allows users to keep track of groceries and the amount of money they spend on them
+// Based on LongFormProblemStarters>SmartHome>SmartHomeUI
+// https://github.students.cs.ubc.ca/CPSC210/LongFormProblemStarters/blob/
+//                                                           ad73576d8c962430983dc95cca9a0344760b3679/SmartHome
 public class GroceryInventoryUI extends JFrame {
     public static final int HOME_TAB_INDEX = 0;
     public static final int ADD_GROCERY_TAB_INDEX = 1;
     public static final int REMOVE_GROCERY_TAB_INDEX = 2;
     public static final int CHANGE_VALUE_TAB_INDEX = 3;
     private static final String JSON_STORE = "./data/inventory.json";
-
-
     public static final int WIDTH = 600;
     public static final int HEIGHT = 400;
 
@@ -31,9 +33,8 @@ public class GroceryInventoryUI extends JFrame {
         new GroceryInventoryUI();
     }
 
-    //MODIFIES: this
+    // MODIFIES: this
     // EFFECTS: creates GroceryInventoryUI, loads inventory, displays sidebar and tabs
-
     private GroceryInventoryUI() {
         super("My Inventory");
         setSize(WIDTH, HEIGHT);
@@ -86,9 +87,5 @@ public class GroceryInventoryUI extends JFrame {
         sidebar.setTitleAt(CHANGE_VALUE_TAB_INDEX, "Change Value");
     }
 
-    //EFFECTS: returns sidebar of this UI
-    public JTabbedPane getTabbedPane() {
-        return sidebar;
-    }
 }
 

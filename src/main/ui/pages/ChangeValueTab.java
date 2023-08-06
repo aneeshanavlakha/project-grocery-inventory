@@ -1,20 +1,23 @@
 package ui.pages;
 
 import model.Inventory;
-
 import javax.swing.*;
 import java.awt.*;
 
+// Change Value tab of UI
 public class ChangeValueTab extends Tab {
     private JTextField valueEntry;
     private static String IMG_PATH = "data/projectimage.jpg";
 
+    // REQUIRES: inventory from store
     public ChangeValueTab(Inventory inventory) {
         super(inventory);
         setUpPanel();
     }
 
-    public void setUpPanel() {
+    // MODIFIES: centerpanel
+    // EFFECTS: refreshes this tab to display up-to-date inventory value and a field to enter new value
+    private void setUpPanel() {
         centerPanel.removeAll();
         displayValue(inventory);
         displayValueEntryObjects();
@@ -22,7 +25,9 @@ public class ChangeValueTab extends Tab {
         centerPanel.repaint();
     }
 
-    // EFFECTS: test box that allows user to input new value
+    // REQUIRES: input is >= 0
+    // MODIFIES: centerpanel
+    // EFFECTS: label and text box that allows user to input new value
     private void displayValueEntryObjects() {
         JLabel label = new JLabel("Set new value: ");
         label.setBounds(10, 60, 200, 25);
@@ -32,6 +37,8 @@ public class ChangeValueTab extends Tab {
         centerPanel.add(valueEntry);
     }
 
+    // MODIFIES: inventory, centerpanel
+    // EFFECTS: displays value in inventory
     private void displayValue(Inventory inventory) {
         int val = inventory.getValue();
         JLabel heading = new JLabel("Amount Spent So Far: $" + val);
@@ -40,6 +47,9 @@ public class ChangeValueTab extends Tab {
         centerPanel.add(heading, BorderLayout.NORTH);
     }
 
+    // REQUIRES: same as super
+    // MODIFIES: inventory, centerpanel
+    // EFFECTS:  saves value input to store, refreshes page to display new value, calls on image
     @Override
     protected void save() {
         inventory.setValue(Integer.parseInt(valueEntry.getText()));
@@ -48,7 +58,9 @@ public class ChangeValueTab extends Tab {
         displayImage();
     }
 
-    public void displayImage() {
+    // MODIFIES: centerpanel
+    // EFFECTS: displays image on panel
+    private void displayImage() {
         ImageIcon icon = new ImageIcon(IMG_PATH);
         JLabel imageLabel = new JLabel(icon);
         imageLabel.setBounds(100, 200, 5, 5);
@@ -57,96 +69,4 @@ public class ChangeValueTab extends Tab {
 }
 
 
-// current value displayed on top of page
-// text box that allows user to input new value
-// when user enters new number and hits "save", new value is updated in inventory and changes reflect
-// on home page
-
-
-//    @Override
-//    protected void saveButton() {
-//        saveButton = new JButton("Save");
-//        imageButton = new JButton("Fun Image");
-//
-//        saveButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                save();
-//            }
-//        });
-//
-//        imageButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                displayImage();
-//            }
-//        });
-//
-//        JPanel buttonPanel = new JPanel();
-//        buttonPanel.add(saveButton);
-//        buttonPanel.add(imageButton);
-//
-//        centerPanel.add(buttonPanel, BorderLayout.SOUTH);
-//    }
-//
-//    @Override
-//    protected void save() {
-//        inventory.setValue(Integer.parseInt(valueEntry.getText()));
-//        super.save();
-//    }
-//
-//    public void displayImage() {
-//        imageButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                try {
-//                    // Load the image from the specified path
-//                    Image image = ImageIO.read(getClass().getResource(IMG_PATH));
-//                    // Create a label to display the image
-//                    JLabel imageLabel = new JLabel(new ImageIcon(image));
-//                    // Clear previous content and add the image label to the panel
-//                    centerPanel.removeAll();
-//                    centerPanel.add(imageLabel);
-//                    // Repaint the panel to update the UI
-//                    centerPanel.revalidate();
-//                    centerPanel.repaint();
-//                } catch (IOException ex) {
-//                    ex.printStackTrace();
-//                }
-//            }
-//        });
-//    }
-
-
-//OR
-
-//
-//    @Override
-//    protected void save() {
-//        inventory.setValue(Integer.parseInt(valueEntry.getText()));
-//        super.save();
-//        displayImage();
-//    }
-//
-//    public void displayImage() {
-//        saveButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                try {
-//                    // Load the image from the specified path
-//                    Image image = ImageIO.read(getClass().getResource(IMG_PATH));
-//                    // Create a label to display the image
-//                    JLabel imageLabel = new JLabel(new ImageIcon(image));
-//                    // Clear previous content and add the image label to the panel
-//                    centerPanel.removeAll();
-//                    centerPanel.add(imageLabel);
-//                    // Repaint the panel to update the UI
-//                    centerPanel.revalidate();
-//                    centerPanel.repaint();
-//                } catch (IOException ex) {
-//                    ex.printStackTrace();
-//                }
-//            }
-//        });
-//    }
 
