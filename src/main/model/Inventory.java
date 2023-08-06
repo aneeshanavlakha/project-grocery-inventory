@@ -55,8 +55,13 @@ public class Inventory implements Writable {
         return this.groceries.size();
     }
 
+    // EFFECTS: sets value to input amount, value cannot be <0
     public void setValue(int amount) {
-        this.value = amount;
+        if (amount >= 0) {
+            this.value = amount;
+        } else {
+            reset();
+        }
     }
 
     public int getValue() {

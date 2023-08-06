@@ -45,9 +45,13 @@ public class Grocery implements Writable {
     }
 
     //MODIFIES: this
-    //EFFECTS: sets new quantity for grocery
+    //EFFECTS: sets new quantity for grocery, quantity must be >=0
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        if (quantity >= 0) {
+            this.quantity = quantity;
+        } else {
+            this.quantity = 0;
+        }
     }
 
     //MODIFIES: this

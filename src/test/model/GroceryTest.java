@@ -27,6 +27,18 @@ class GroceryTest {
     }
 
     @Test
+    public void testSetQuantity() {
+        banana.setQuantity(-1);
+        assertEquals(0, banana.getQuantity());
+
+        banana.setQuantity(0);
+        assertEquals(0, banana.getQuantity());
+
+        banana.setQuantity(1);
+        assertEquals(1, banana.getQuantity());
+
+    }
+    @Test
     public void testAlert() {
         banana.setMinAmount(3);
         banana.setQuantity(3);
