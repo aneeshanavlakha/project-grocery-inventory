@@ -13,7 +13,7 @@ import java.awt.*;
 import java.io.IOException;
 
 // A Grocery Inventory UI that allows users to keep track of groceries and the amount of money they spend on them
-// Based on LongFormProblemStarters>SmartHome>SmartHomeUI
+// Based on LongFormProblemStarters>SmartHome>UI>SmartHomeUI
 // https://github.students.cs.ubc.ca/CPSC210/LongFormProblemStarters/blob/
 //                                                           ad73576d8c962430983dc95cca9a0344760b3679/SmartHome
 public class GroceryInventoryUI extends JFrame {

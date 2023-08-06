@@ -10,6 +10,7 @@ public class ChangeValueTab extends Tab {
     private JTextField valueEntry;
     private static String IMG_PATH = "data/projectimage.jpg";
 
+
     // REQUIRES: inventory from store
     public ChangeValueTab(Inventory inventory) {
         super(inventory);
@@ -19,6 +20,7 @@ public class ChangeValueTab extends Tab {
 
         setUpPanel();
     }
+
 
     // MODIFIES: centerpanel
     // EFFECTS: displays up-to-date inventory value and a field to enter new value
@@ -30,10 +32,12 @@ public class ChangeValueTab extends Tab {
         centerPanel.repaint();
     }
 
+
     // MODIFIES: centerpanel
     // EFFECTS: displays value in inventory
     private void displayValue(Inventory inventory) {
         int val = inventory.getValue();
+
         JLabel heading = new JLabel("Amount Spent So Far: $" + val);
         heading.setFont(new Font("Arial", Font.BOLD, 18));
         heading.setHorizontalAlignment(SwingConstants.CENTER);
@@ -41,12 +45,16 @@ public class ChangeValueTab extends Tab {
         centerPanel.add(heading, BorderLayout.NORTH);
     }
 
+
     // MODIFIES: centerpanel
-    // EFFECTS: adds label and text box that allows user to input new value
+    // EFFECTS: creates a sub panel within the middle panel of centerpanel
+    //          adds label and text box that allows user to input new value
     private void displayValueEntryObjects() {
         JPanel subPanel = new JPanel(new GridLayout(1, 2));
+
         JLabel label = new JLabel("Set new value: ");
         label.setFont(new Font("Arial", Font.PLAIN, 15));
+
         valueEntry = new JTextField();
 
         subPanel.add(label);
@@ -65,8 +73,9 @@ public class ChangeValueTab extends Tab {
         displayImage();
     }
 
+
     // MODIFIES: centerpanel
-    // EFFECTS: displays image on lower panel
+    // EFFECTS: displays image on lower  panel
     private void displayImage() {
         ImageIcon icon = new ImageIcon(IMG_PATH);
         JLabel imageLabel = new JLabel(icon);

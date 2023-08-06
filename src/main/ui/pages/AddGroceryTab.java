@@ -5,7 +5,7 @@ import model.Inventory;
 
 import javax.swing.*;
 
-// Add grocery page of UI
+// Add Grocery page of UI
 public class AddGroceryTab extends Tab {
     JTextField name;
     JTextField quantity;
@@ -61,12 +61,12 @@ public class AddGroceryTab extends Tab {
     // MODIFIES: same as super
     // EFFECTS: creates a grocery item with given inputs
     //          if input quantity or min amounts are <0, makes them 0
+    //          saves grocery item to inventory
     @Override
     protected void save() {
         String groceryName = name.getText();
         int groceryQuantity = Integer.parseInt(quantity.getText());
         int groceryMinAmount = Integer.parseInt(minAmount.getText());
-
 
         if (groceryQuantity < 0) {
             groceryQuantity = 0;

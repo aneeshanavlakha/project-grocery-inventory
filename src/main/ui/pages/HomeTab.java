@@ -60,6 +60,9 @@ public class HomeTab extends Tab {
         centerPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
+    // Based on LongFormProblemStarters>SmartHome>UI>SettingsTab
+    // https://github.students.cs.ubc.ca/CPSC210/LongFormProblemStarters/blob/
+    //                       ad73576d8c962430983dc95cca9a0344760b3679/SmartHome/src/main/ui/tabs/SettingsTab.java
     // MODIFIES: this
     // EFFECTS: load button that refreshes inventory to display any changes
     private void loadButton() {
@@ -71,6 +74,14 @@ public class HomeTab extends Tab {
         buttonRow.add(addButton);
         buttonRow.add(removeButton);
 
+        buttonActionListeners(addButton, removeButton);
+
+        add(buttonRow, BorderLayout.SOUTH);
+    }
+
+    // MODIFIES: loadButton, addButton and removeButton
+    // EFFECTS: defines action events for the 3 buttons on the home page
+    private void buttonActionListeners(JButton addButton, JButton removeButton) {
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,8 +97,6 @@ public class HomeTab extends Tab {
         removeButton.addActionListener(e -> {
             gui.getPane().setSelectedIndex(2);
         });
-
-        add(buttonRow, BorderLayout.SOUTH);
     }
 
 }

@@ -47,14 +47,16 @@ public abstract class Tab extends JPanel {
         add(buttonRow, BorderLayout.SOUTH);
     }
 
+    // Based on LongFormProblemStarters>SmartHome>UI>Tab
+    // https://github.students.cs.ubc.ca/CPSC210/LongFormProblemStarters/
+    //                      blob/ad73576d8c962430983dc95cca9a0344760b3679/SmartHome/src/main/ui/tabs/Tab.java
     // MODIFIES: this
     // EFFECTS: creates a row for buttons
-    public JPanel formatButtonRow(JButton b) {
-        JPanel p = new JPanel();
-        p.setLayout(new FlowLayout());
-        p.add(b);
-
-        return p;
+    public JPanel formatButtonRow(JButton button) {
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
+        buttonPanel.add(button);
+        return buttonPanel;
     }
 
     // MODIFIES: JSON_STORE

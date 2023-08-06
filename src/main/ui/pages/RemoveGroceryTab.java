@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-// Remove grocery page of UI
+// Remove Grocery page of UI
 public class RemoveGroceryTab extends Tab {
     private JTable itemTable;
     private DefaultTableModel tableModel;
@@ -39,11 +39,12 @@ public class RemoveGroceryTab extends Tab {
         tableModel = new DefaultTableModel(new Object[]{"Name", "Quantity", "Minimum Amount"}, 0);
         itemTable = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(itemTable);
-        centerPanel.add(scrollPane, BorderLayout.CENTER);
+
         for (Grocery grocery : inventory.getGroceries()) {
             tableModel.addRow(new Object[]
                     {grocery.getGroceryName(), grocery.getQuantity(), grocery.getMinAmount()});
         }
+
         centerPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
@@ -51,18 +52,31 @@ public class RemoveGroceryTab extends Tab {
     // MODIFIES: tableModel
     // EFFECTS: creates a list of table items users are selecting
     private void makeSelectionModelList() {
-        ListSelectionModel selectionModel = itemTable.getSelectionModel();
-        selectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        ListSelectionModel tableSelectionModel = itemTable.getSelectionModel();
+        tableSelectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     }
 
     // MODIFIES: same as super
     // EFFECTS: creates a remove and refresh inventory button that carry out save and refresh
-    //          functions respectively
+    //           functions respectively
+    //          saves grocery item to inventory
     @Override
     protected void saveButton() {
         saveButton = new JButton("Remove");
         JButton refreshButton = new JButton("Refresh Inventory");
 
+        buttonActionListeners(refreshButton);
+
+        JPanel buttonRow = formatButtonRow(saveButton);
+        buttonRow.add(saveButton);
+        buttonRow.add(refreshButton);
+
+        add(buttonRow, BorderLayout.SOUTH);
+    }
+
+    // MODIFIES: saveButton adn refreshButton
+    // EFFECTS: defines action events for the 2 buttons on the add grocery page
+    private void buttonActionListeners(JButton refreshButton) {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,12 +90,6 @@ public class RemoveGroceryTab extends Tab {
                 setUpPanel();
             }
         });
-
-        JPanel buttonRow = formatButtonRow(saveButton);
-        buttonRow.add(saveButton);
-        buttonRow.add(refreshButton);
-
-        add(buttonRow, BorderLayout.SOUTH);
     }
 
     // REQUIRES: selection mode list is not empty
