@@ -48,10 +48,31 @@ Phase 2:
 # Instructions for Grader
 
 - You can generate the first required action related to adding Xs to a Y by...
+  - Clicking the "Add" button on the Home page, or selecting the "Add Grocery" tab in the panel on the right side
+  - It will direct you to the Add Grocery page  
+    - Enter a grocery name (String), quantity (int) and the minimum amount (int)
+    - Click the "Save" button to save changes to inventory
+
 - You can generate the second required action related to adding Xs to a Y by...
+  - Clicking the "Remove" button on the Home page, or selecting the "Remove Grocery" tab in the panel on the right side
+      - It will direct you to the Remove Grocery page
+        - Select the grocery you want to remove from the inventory by clicking on it's row in the table
+          - To select one grocery, click it with your mouse
+          - To select multiple inconsecutive groceries, hold ctrl or command key and mouse select the groceries 
+          - To select multiple consecutive groceries, hold shift key and mouse select first and last grocery in range
+        - Click the "Remove" button to save changes to inventory
+
 - You can locate my visual component by...
-- You can save the state of my application by...
+  - Going to the "Change Value" tab
+  - Entering a new value i.e., amount of money spent on groceries (int) and clicking the "Save" button
+  - You may continue to change the value as many times as you want
+
+- You can save the state of my application by
+  - Clicking "Save" button in the Add Grocery and Change Value tabs
+  - CLicking "Remove" button in Remove Grocery tab
+
 - You can reload the state of my application by...
+  - Clicking "Refresh Inventory" button in the Home tab and Remove Grocery tab
 
 
 
