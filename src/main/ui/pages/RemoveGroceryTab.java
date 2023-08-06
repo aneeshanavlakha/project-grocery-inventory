@@ -3,7 +3,6 @@ package ui.pages;
 import model.Grocery;
 import model.Inventory;
 
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -16,11 +15,9 @@ import java.util.List;
 
 public class RemoveGroceryTab extends Tab {
     private static String IMG_PATH = "data/projectimage.jpg";
-    private JButton reloadButton;
 
     private JTable itemTable;
     private DefaultTableModel tableModel;
-
 
     public RemoveGroceryTab(Inventory inventory) {
         super(inventory);
@@ -31,15 +28,14 @@ public class RemoveGroceryTab extends Tab {
     // EFFECTS: !!
     public void setUpPanel() {
         centerPanel.removeAll();
-        JScrollPane scrollPane = setTable();
+        setTable();
         makeSelectionModelList();
-        centerPanel.add(scrollPane, BorderLayout.CENTER);
         centerPanel.revalidate();
         centerPanel.repaint();
     }
 
 
-    private JScrollPane setTable() {
+    private void setTable() {
         tableModel = new DefaultTableModel(new Object[]{"Name", "Quantity", "Minimum Amount"}, 0);
         itemTable = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(itemTable);
@@ -48,7 +44,7 @@ public class RemoveGroceryTab extends Tab {
             tableModel.addRow(new Object[]
                     {grocery.getGroceryName(), grocery.getQuantity(), grocery.getMinAmount()});
         }
-        return scrollPane;
+        centerPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
     private void makeSelectionModelList() {
@@ -58,15 +54,16 @@ public class RemoveGroceryTab extends Tab {
 
     @Override
     protected void saveButton() {
-        saveButton = new JButton("Save/Reload");
+        saveButton = new JButton("Refresh/Save Changes");
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 save();
             }
         });
-        add(saveButton, BorderLayout.SOUTH);  // causing a second panel on bottom half of screen
+        add(saveButton, BorderLayout.SOUTH);
     }
+
 
     @Override
     protected void save() {

@@ -1,20 +1,8 @@
 {
-    "value": 9,
-    "groceries": [
-        {
-            "minAmount": 3,
-            "quantity": 20,
-            "name": "blueberry"
-        },
-        {
-            "minAmount": 484,
-            "quantity": 99,
-            "name": "test"
-        },
-        {
-            "minAmount": 4,
-            "quantity": 67,
-            "name": "hh"
-        }
-    ]
+    "value": 0,
+    "groceries": [{
+        "minAmount": 3,
+        "quantity": 20,
+        "name": "blueberry"
+    }]
 }

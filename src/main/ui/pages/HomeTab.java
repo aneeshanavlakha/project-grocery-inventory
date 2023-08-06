@@ -22,14 +22,14 @@ public class HomeTab extends Tab {
         super(inventory);
         this.gui = gui;
         centerPanel.setLayout(new BorderLayout());
-        setPage(inventory);
+        setUpPanel(inventory);
         loadButton();
     }
 
-    private void setPage(Inventory inventory) {
+    private void setUpPanel(Inventory inventory) {
         centerPanel.removeAll();
         displayValue(inventory);
-        loadTable(inventory);
+        setTable(inventory);
         centerPanel.revalidate();
         centerPanel.repaint();
     }
@@ -42,7 +42,7 @@ public class HomeTab extends Tab {
         centerPanel.add(heading, BorderLayout.NORTH);
     }
 
-    private void loadTable(Inventory inventory) {
+    private void setTable(Inventory inventory) {
         tableModel = new DefaultTableModel(new Object[]{"Name", "Quantity", "Minimum Amount"}, 0);
         itemTable = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(itemTable);
@@ -56,15 +56,15 @@ public class HomeTab extends Tab {
 
     //Load button that reloads inventory once updated
     private void loadButton() {
-        loadButton = new JButton("Load Inventory");
-        this.add(loadButton, BorderLayout.SOUTH);
+        loadButton = new JButton("Reload Inventory");
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gui.loadInventory();    //not reloading updated inventory on click
-                setPage(inventory);
+                setUpPanel(inventory);
             }
         });
+        this.add(loadButton, BorderLayout.SOUTH);
     }
 }
 
