@@ -74,6 +74,19 @@ Phase 2:
 - You can reload the state of my application by...
   - Clicking "Refresh Inventory" button in the Home tab and Remove Grocery tab
 
+## Phase 4: Task 2
+Wed Aug 09 15:45:56 PDT 2023
+Event log cleared.
+Wed Aug 09 15:46:10 PDT 2023
+Added new grocery Carrot with quantity 32 and minimum amount 2
+Wed Aug 09 15:46:15 PDT 2023
+Removed grocery : pea.
+Wed Aug 09 15:46:19 PDT 2023
+Changed inventory value to 80
+
+
+
+
 
 
 

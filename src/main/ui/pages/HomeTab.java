@@ -27,8 +27,8 @@ public class HomeTab extends Tab {
         loadButton();
     }
 
-    // MODIFIES: this panel
-    // EFFECTS: refreshes this panel to display up-to-date information on inventory value and grocery table
+    // MODIFIES: centerpanel
+    // EFFECTS: refreshes panel to display up-to-date information on inventory value and grocery table
     private void setUpPanel(Inventory inventory) {
         centerPanel.removeAll();
         displayValue(inventory);
@@ -37,6 +37,8 @@ public class HomeTab extends Tab {
         centerPanel.repaint();
     }
 
+
+    // MODIFIES: canterpanel
     // EFFECTS: displays the value from inventory at the top of the panel
     private void displayValue(Inventory inventory) {
         int val = inventory.getValue();

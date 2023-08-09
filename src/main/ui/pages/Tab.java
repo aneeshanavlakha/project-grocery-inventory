@@ -62,12 +62,10 @@ public abstract class Tab extends JPanel {
     // MODIFIES: JSON_STORE
     // EFFECTS: writes user input to json
     protected void save() {
-        System.out.println("Saved changes.");
         try {
             jsonWriter.open();
             jsonWriter.write(inventory);
             jsonWriter.close();
-            System.out.println("Saved inventory to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }

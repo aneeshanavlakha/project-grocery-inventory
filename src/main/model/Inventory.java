@@ -27,24 +27,44 @@ public class Inventory implements Writable {
     //EFFECTS: adds a grocery to inventory
     public void addGrocery(Grocery g) {
         groceries.add(g);
+        EventLog.getInstance().logEvent(
+                new Event("Added new grocery " + g.getGroceryName()
+                        + " with quantity " + g.getQuantity()
+                        + " and minimum amount " + g.getMinAmount()));
     }
 
     //MODIFIES: this
     //EFFECTS: removes a grocery from inventory
-    public void removeGrocery(Grocery grocery) {
-        groceries.remove(grocery);
+    public void removeGrocery(Grocery g) {
+        groceries.remove(g);
+        EventLog.getInstance().logEvent(new Event("Removed grocery : " + g.getGroceryName() + "."));
+
+    }
+
+    // EFFECTS: sets value to input amount, value cannot be <0
+    public void setValue(int amount) {
+        if (amount >= 0) {
+            this.value = amount;
+        } else {
+            reset();
+        }
+        EventLog.getInstance().logEvent(new Event("Changed inventory value to " + amount));
     }
 
     //MODIFIES: this
     //EFFECTS: Adds the amount spend to existing value
     public void updateValue(int amount) {
         this.value += amount;
+        EventLog.getInstance().logEvent(new Event("Updated inventory value " + this.value));
+
     }
 
     //MODIFIES: this
     //EFFECTS: resets existing value to 0
     public void reset() {
         this.value = 0;
+        EventLog.getInstance().logEvent(new Event("Inventory value reset to 0."));
+
     }
 
     public List<Grocery> getGroceries() {
@@ -55,14 +75,6 @@ public class Inventory implements Writable {
         return this.groceries.size();
     }
 
-    // EFFECTS: sets value to input amount, value cannot be <0
-    public void setValue(int amount) {
-        if (amount >= 0) {
-            this.value = amount;
-        } else {
-            reset();
-        }
-    }
 
     public int getValue() {
         return this.value;

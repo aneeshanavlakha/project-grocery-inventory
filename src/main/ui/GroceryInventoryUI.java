@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Inventory;
 import persistence.JsonReader;
 
@@ -10,6 +12,8 @@ import ui.pages.RemoveGroceryTab;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 // A Grocery Inventory UI that allows users to keep track of groceries and the amount of money they spend on them
@@ -37,12 +41,14 @@ public class GroceryInventoryUI extends JFrame {
     // EFFECTS: creates GroceryInventoryUI, loads inventory, displays sidebar and tabs
     private GroceryInventoryUI() {
         super("My Inventory");
+
         setSize(WIDTH, HEIGHT);
         setBackground(Color.GRAY);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         inventory = new Inventory();
         loadInventory();
+
+        EventLog.getInstance().clear();
 
         sidebar = new JTabbedPane();
         sidebar.setTabPlacement(JTabbedPane.RIGHT);
@@ -50,7 +56,21 @@ public class GroceryInventoryUI extends JFrame {
         loadTabs();
         add(sidebar);
 
+        windowActions();
+
         setVisible(true);
+    }
+
+    private void windowActions() {
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent w) {
+                for (Event e : EventLog.getInstance()) {
+                    System.out.println(e);
+                }
+            }
+        });
     }
 
     //EFFECTS: returns Inventory object controlled by this UI
