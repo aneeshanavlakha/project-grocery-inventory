@@ -85,8 +85,9 @@ Wed Aug 09 15:46:19 PDT 2023
 Changed inventory value to 80
 
 ## Phase 4: Task 3
-If you had more time to work on the project, what refactoring might you use to improve your design? 
-One thing I'd do is remove some of the code duplication between the HomeTab class and RemoveGroceryTab class, 
+I'd refactor my design to ensure my event is not logged twice.
+
+Another thing I'd do is remove some of the code duplication between the HomeTab class and RemoveGroceryTab class, 
 especially in the setTable() and saveButton() methods. The setTable() method implementation is pretty much identical 
 in both classes, and I think that either adding them into a common abstract class, perhaps in Tab would help reduce 
 some of the duplication. However, none of the other subclasses of Tab use those methods, so I'd have to figure out 
@@ -94,22 +95,19 @@ how to fix that.
 
 Same goes from the loadTabs() method in the GroceryInventoryUI class. The section of code where I am adding tabs and 
 setting their indices
-
-i.e., sidebar.add(homeTab, HOME_TAB_INDEX);
-sidebar.setTitleAt(HOME_TAB_INDEX, "Home");
-
+i.e., 
+  sidebar.add(homeTab, HOME_TAB_INDEX);
+  sidebar.setTitleAt(HOME_TAB_INDEX, "Home");
 has a lot of duplication - the method calls to sidebar.add() and sidebar.setTitle() repeated with different parameters. 
 I'd extract the 2 methods into a new method, perhaps createSidebar() that takes parameters
-JPanel, int, and String. Then I'd simply call createSidebar for each tab.  Eg:
-
-public void createSidebar(JPanel panel, int index, String name) {
-sidebar.add(panel, index);
-sidebar.setTitleAt(index, name);
-}
-
+JPanel, int, and String. Then I'd simply call createSidebar for each tab.  
+Eg:
+  public void createSidebar(JPanel panel, int index, String name) {
+  sidebar.add(panel, index);
+  sidebar.setTitleAt(index, name);
+  } 
 and in loadTabs() :
-createSidebar(homeTab, HOME_TAB_INDEX, "Home");
-
+  createSidebar(homeTab, HOME_TAB_INDEX, "Home");
 etc.
 
 

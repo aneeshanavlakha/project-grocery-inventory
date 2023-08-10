@@ -65,7 +65,8 @@ public class JsonReader {
         int quantity = jsonObject.getInt("quantity");
         int minAmount = jsonObject.getInt("minAmount");
         Grocery grocery = new Grocery(name, quantity, minAmount);
-        inv.addGrocery(grocery);
+//        inv.addGrocery(grocery);
+        inv.getGroceries().add(grocery);
     }
 
     // MODIFIES: inv
@@ -73,6 +74,13 @@ public class JsonReader {
     private void addValue(Inventory inv, JSONObject jsonObject) {
         int value = jsonObject.getInt("value");
         inv.setValue(value);
+
+        //a way to set value without calling setvalue method
+        // but it doesn't display on reload
+//        int change = inv.getValue();
+//        change = value;
+//        value = change;
+
     }
 }
 

@@ -48,6 +48,8 @@ public class Inventory implements Writable {
         } else {
             reset();
         }
+
+        //add a way to check if the log already has that event?
         EventLog.getInstance().logEvent(new Event("Changed inventory value to " + amount));
     }
 
@@ -55,16 +57,12 @@ public class Inventory implements Writable {
     //EFFECTS: Adds the amount spend to existing value
     public void updateValue(int amount) {
         this.value += amount;
-        EventLog.getInstance().logEvent(new Event("Updated inventory value " + this.value));
-
     }
 
     //MODIFIES: this
     //EFFECTS: resets existing value to 0
     public void reset() {
         this.value = 0;
-        EventLog.getInstance().logEvent(new Event("Inventory value reset to 0."));
-
     }
 
     public List<Grocery> getGroceries() {
