@@ -12,10 +12,10 @@ import java.io.FileNotFoundException;
 // An abstract class that contains the save button and save function present in most Tabs
 public abstract class Tab extends JPanel {
     private static final String JSON_STORE = "./data/inventory.json";
-    protected JPanel centerPanel;
-    private JsonWriter jsonWriter;
-    protected JButton saveButton;
     protected Inventory inventory;
+    protected JPanel centerPanel;
+    protected JButton saveButton;
+    private JsonWriter jsonWriter;
 
     // REQUIRES: inventory from store
     protected Tab(Inventory inventory) {
